@@ -15,8 +15,9 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -33,7 +34,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -43,3 +44,32 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+## I ADDED THESE BELOW
+
+  gem 'strong_parameters'
+	group :development, :test do
+	  gem 'rspec-rails'
+	  gem 'factory_girl_rails'
+	  gem 'shoulda-matchers'
+	  gem 'binding_of_caller'
+  	gem 'guard-rspec'
+  	gem 'debugger'
+	end
+
+	group :development do
+	  gem 'better_errors'
+	end
+
+	group :test do
+  	gem 'capybara'
+  	gem 'launchy'
+	end
+
+group :production do
+	gem 'rails_12factor'  # heroku deployment needs this
+	gem 'thin'
+	gem 'sprockets-rails' # automatically compile your assests for you don't have to.
+end
+
+gem 'jquery-ui-rails'
