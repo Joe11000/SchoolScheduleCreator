@@ -11,13 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131202060132) do
+ActiveRecord::Schema.define(version: 20131205230619) do
+
+  create_table "courses_pools", force: true do |t|
+    t.string   "subject"
+    t.datetime "time_start"
+    t.datetime "time_end"
+    t.integer  "min_students_to_teach"
+    t.integer  "school_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "schools", force: true do |t|
     t.string   "name"
     t.string   "location"
     t.text     "bio"
     t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teacher_course_possibilities", force: true do |t|
+    t.boolean  "scheduled_course", default: false
+    t.integer  "courses_pool_id"
+    t.integer  "teacher_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teachers", force: true do |t|
+    t.string   "name"
+    t.text     "bio"
+    t.string   "break_time"
+    t.integer  "school_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

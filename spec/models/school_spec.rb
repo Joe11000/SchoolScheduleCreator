@@ -5,7 +5,11 @@ describe School do
 		@school = FactoryGirl.build(:school)
 		@school.password              = "1234"
 		@school.password_confirmation = "1234"
-		@school.save()
+    @school.save()
+    @teacher = FactoryGirl.create(:teacher)
+    @school.teachers << @teacher
+
+
 	end
 
   it "has a name" do
@@ -24,12 +28,13 @@ describe School do
   	expect(@school.bio).to eq "Opened Last Thursday."
   end
 
-  # it { should have_secure_password }
+  it { should have_secure_password }
   it { should allow_mass_assignment_of(:bio) }
   it { should allow_mass_assignment_of(:location) }
   it { should allow_mass_assignment_of(:name) }
   it { should_not allow_mass_assignment_of(:password) }
 
   it { should have_many(:teachers) }
+  it { should have_many(:courses_pools) }
 
 end

@@ -33,4 +33,8 @@ SchoolScheduleCreator::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # Joe Added
+  # prevents annoying warning when running rspec
+  I18n.enforce_available_locales = false
 end

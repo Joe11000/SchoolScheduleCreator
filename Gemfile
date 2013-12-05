@@ -47,7 +47,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 ## I ADDED THESE BELOW
 
-# gem 'strong_parameters'
 gem "protected_attributes"
 
 group :development, :test do
