@@ -47,29 +47,31 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 ## I ADDED THESE BELOW
 
-  gem 'strong_parameters'
-	group :development, :test do
-	  gem 'rspec-rails'
-	  gem 'factory_girl_rails'
-	  gem 'shoulda-matchers'
-	  gem 'binding_of_caller'
-  	gem 'guard-rspec'
-  	gem 'debugger'
-	end
+# gem 'strong_parameters'
+gem "protected_attributes"
 
-	group :development do
-	  gem 'better_errors'
-	end
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
+  gem 'binding_of_caller'
+	gem 'guard-rspec'
+	gem 'debugger'
+end
 
-	group :test do
-  	gem 'capybara'
-  	gem 'launchy'
-	end
+group :development do
+  gem 'better_errors'
+end
+
+group :test do
+	gem 'capybara'
+	gem 'launchy'
+end
 
 group :production do
-	gem 'rails_12factor'  # heroku deployment needs this
-	gem 'thin'
-	gem 'sprockets-rails' # automatically compile your assests for you don't have to.
+  gem 'rails_12factor'  # heroku deployment needs this
+  gem 'thin'
+  gem 'sprockets-rails' # automatically compile your assests for you don't have to.
 end
 
 gem 'jquery-ui-rails'

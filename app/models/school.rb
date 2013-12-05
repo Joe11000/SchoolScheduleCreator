@@ -1,7 +1,7 @@
 class School < ActiveRecord::Base
 	has_secure_password
 
-	allow_mass_assignment_of()
+	attr_accessible :name, :bio, :location
 
 	# validates :name,     presence: true, uniqueness: true
  #  validates :bio,      presence: true
