@@ -18,7 +18,7 @@ t = Teacher.create(name: "Teacher_A",
 
 cp = CoursesPool.create(subject: "english",  time_start: DateTime.now,  time_end: DateTime.now + 1.hour,  min_students_to_teach: 2)
 
-tcp = TeacherCoursePossibili
+# tcp = TeacherCoursePossibily.create()
 
 s.teachers << t
 s.courses_pools << cp
