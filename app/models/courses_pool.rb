@@ -4,7 +4,7 @@ class CoursesPool < ActiveRecord::Base
   belongs_to :school
 
   # 2 below not rspeced tested yet
-  has_many :teacher_course_possibilities
+  has_many :teacher_course_possibilities, dependent: :destroy
   has_many :teachers, through: :teacher_course_possibilities
 
 
@@ -12,5 +12,5 @@ class CoursesPool < ActiveRecord::Base
   validates  :time_end,   presence: true
   validates  :min_students_to_teach, presence: true,
     	                               numericality: { integer_only: true,
-                                                     greater_than: 0}
+                                                     greater_than: 0 }
 end

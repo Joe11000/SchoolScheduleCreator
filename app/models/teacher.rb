@@ -4,7 +4,7 @@ class Teacher < ActiveRecord::Base
 	belongs_to :school
 
 	# 2 below not rspeced tested yet
-  has_many :teacher_course_possibilities
+  has_many :teacher_course_possibilities, dependent: :destroy
   has_many :courses_pools, through: :teacher_course_possibilities
 
 

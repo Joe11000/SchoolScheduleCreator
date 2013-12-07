@@ -1,7 +1,7 @@
 class School < ActiveRecord::Base
 	has_secure_password
 	has_many :teachers
-	has_many :courses_pools
+	has_many :courses_pools, dependent: :destroy
 
 	attr_accessible :name, :bio, :location
 
