@@ -16,5 +16,9 @@ describe Teacher do
   it { should allow_mass_assignment_of(:name) }
   it { should allow_mass_assignment_of(:bio) }
   it { should allow_mass_assignment_of(:break_time) }
+
   it { should belong_to(:school) }
+  it { should have_many(:break_times).dependent(:destroy) }
+  it { should have_many(:teacher_course_possibilities).dependent(:destroy) }
+  it { should have_many(:courses_pools).through(:teacher_course_possibilities) }
 end

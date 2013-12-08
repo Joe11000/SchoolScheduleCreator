@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :teacher do
+     # break_time
      name       "Jill Teacher"
-     break_time  nil
      bio        "Does the teaching thing"
   end
 end

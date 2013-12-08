@@ -11,12 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205230619) do
+ActiveRecord::Schema.define(version: 20131207190118) do
+
+  create_table "break_times", force: true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.boolean  "confirmed",  default: false
+    t.integer  "teacher_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "courses_pools", force: true do |t|
     t.string   "subject"
-    t.datetime "time_start"
-    t.datetime "time_end"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.integer  "min_students_to_teach"
     t.integer  "school_id"
     t.datetime "created_at"
@@ -43,7 +52,6 @@ ActiveRecord::Schema.define(version: 20131205230619) do
   create_table "teachers", force: true do |t|
     t.string   "name"
     t.text     "bio"
-    t.string   "break_time"
     t.integer  "school_id"
     t.datetime "created_at"
     t.datetime "updated_at"

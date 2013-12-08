@@ -6,10 +6,9 @@ describe School do
 		@school.password              = "1234"
 		@school.password_confirmation = "1234"
     @school.save()
+
     @teacher = FactoryGirl.create(:teacher)
-    @school.teachers << @teacher
-
-
+     @school.teachers << @teacher
 	end
 
   it "has a name" do
