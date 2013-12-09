@@ -8,7 +8,7 @@ describe School do
     @school.save()
 
     @teacher = FactoryGirl.create(:teacher)
-     @school.teachers << @teacher
+    @school.teachers << @teacher
   end
 
   after(:all) do

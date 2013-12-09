@@ -3,6 +3,7 @@ class TeacherCoursePossibility < ActiveRecord::Base
 
   belongs_to :courses_pool
   belongs_to :teacher
+  has_one    :room #, if: {"self.scheduled_course == true"}
 
-  #validates :scheduled_course, acceptance: { accept: [true, false],  message: "Only true or false accepted" }
+  # validates :
 end
