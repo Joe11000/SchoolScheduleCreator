@@ -2,9 +2,13 @@ require 'spec_helper'
 
 describe BreakTime do
   before(:all) do
-  	@teacher    = FactoryGirl.create(:teacher)
-  	@break_time = FactoryGirl.create(:break_time)
-  	@teacher.break_times << @break_time
+    @teacher    = FactoryGirl.create(:teacher)
+    @break_time = FactoryGirl.create(:break_time)
+    @teacher.break_times << @break_time
+  end
+
+  it "has a valid factory" do
+    FactoryGirl.create(:break_time).should be_valid
   end
 
   it { should allow_mass_assignment_of(:start_time) }
