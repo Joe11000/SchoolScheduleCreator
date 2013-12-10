@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131207190118) do
+ActiveRecord::Schema.define(version: 20131209063719) do
 
   create_table "break_times", force: true do |t|
     t.datetime "start_time"
@@ -24,10 +24,17 @@ ActiveRecord::Schema.define(version: 20131207190118) do
 
   create_table "courses_pools", force: true do |t|
     t.string   "subject"
-    t.datetime "start_time"
-    t.datetime "end_time"
     t.integer  "min_students_to_teach"
     t.integer  "school_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rooms", force: true do |t|
+    t.integer  "capacity"
+    t.integer  "number"
+    t.integer  "school_id"
+    t.integer  "teacher_course_possibility_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,6 +50,8 @@ ActiveRecord::Schema.define(version: 20131207190118) do
 
   create_table "teacher_course_possibilities", force: true do |t|
     t.boolean  "scheduled_course", default: false
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.integer  "courses_pool_id"
     t.integer  "teacher_id"
     t.datetime "created_at"

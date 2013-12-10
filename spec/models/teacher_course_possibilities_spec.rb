@@ -21,6 +21,8 @@ describe TeacherCoursePossibility do
 			@course.destroy
 		end
 
-	  #it { should have_one(:room) }
+
+   it { should allow_mass_assignment_of(:start_time) }
+   it { should allow_mass_assignment_of(:end_time) }
 	end
 end

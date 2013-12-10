@@ -7,6 +7,11 @@ describe BreakTime do
     @teacher.break_times << @break_time
   end
 
+  after(:all) do
+    @teacher.destroy
+    @break_time.destroy
+  end
+
   it "has a valid factory" do
     FactoryGirl.create(:break_time).should be_valid
   end

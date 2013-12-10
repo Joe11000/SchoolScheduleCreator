@@ -4,6 +4,8 @@ FactoryGirl.define do
   factory :teacher_course_possibility, :class => 'TeacherCoursePossibilities' do
   	teacher_course_possibility
   	teacher
+  	start_time              Time.new(2013,12,31,6,30)
+  	end_time                Time.new(2013,12,31,7,30)
   	scheduled_course   false
   end
 end

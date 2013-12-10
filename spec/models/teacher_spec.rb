@@ -5,6 +5,10 @@ describe Teacher do
     @teacher = FactoryGirl.create(:teacher)
 	end
 
+  after(:all) do
+    @teacher.destroy
+  end
+
   it "has a name" do
   	expect(@teacher.name).to eq "Jill Teacher"
   end

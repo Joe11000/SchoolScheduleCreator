@@ -3,5 +3,8 @@ class TeacherCoursePossibility < ActiveRecord::Base
 
   belongs_to :courses_pool
   belongs_to :teacher
-  #has_one    :room
+
+  validates  :start_time, presence: true
+  validates  :end_time,   presence: true
+
 end
