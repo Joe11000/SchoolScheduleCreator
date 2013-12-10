@@ -1,5 +1,6 @@
 class Room < ActiveRecord::Base
 	attr_accessible :capacity, :number
+
 	validates :capacity, presence: true,
 	                     numericality: { integer_only: true,
                                        greater_than: 0 }

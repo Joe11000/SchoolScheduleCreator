@@ -13,15 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20131210185242) do
 
-  create_table "break_times", force: true do |t|
-    t.boolean  "confirmed",     default: false
-    t.integer  "teacher_id"
-    t.integer  "timeable_id"
-    t.string   "timeable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "courses_pools", force: true do |t|
     t.string   "subject"
     t.integer  "min_students_to_teach"

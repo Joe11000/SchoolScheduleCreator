@@ -1,5 +1,5 @@
 class CoursesPool < ActiveRecord::Base
-  attr_accessible :subject, :start_time, :end_time, :min_students_to_teach
+  attr_accessible :subject, :min_students_to_teach
 
   belongs_to :school
 

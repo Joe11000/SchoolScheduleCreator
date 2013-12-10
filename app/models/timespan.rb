@@ -4,6 +4,5 @@ class Timespan < ActiveRecord::Base
 	validates  :start_time, presence: true
   validates  :end_time,   presence: true
 
-	belongs_to :imageable, polymorphic: true
-
+	belongs_to :timeable, polymorphic: true
 end
