@@ -9,5 +9,7 @@ class School < ActiveRecord::Base
 	has_many :teachers
 	has_many :courses_pools, dependent: :destroy
 
+	has_one  :hours, as: :timeable
+
 	has_secure_password
 end

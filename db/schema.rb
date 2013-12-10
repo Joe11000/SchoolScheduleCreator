@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209063719) do
+ActiveRecord::Schema.define(version: 20131210185242) do
 
   create_table "break_times", force: true do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.boolean  "confirmed",  default: false
+    t.boolean  "confirmed",     default: false
     t.integer  "teacher_id"
+    t.integer  "timeable_id"
+    t.string   "timeable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,6 +62,15 @@ ActiveRecord::Schema.define(version: 20131209063719) do
     t.string   "name"
     t.text     "bio"
     t.integer  "school_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "timespans", force: true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "timeable_id"
+    t.string   "timeable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
