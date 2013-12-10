@@ -3,13 +3,13 @@ class School < ActiveRecord::Base
 
 	validates :name,     presence: true, uniqueness: true
   validates :bio,      presence: true
-  validates :location, presence: true
+  validates :location, presence: true, uniqueness: true
   validates :password, presence: true
 
 	has_many :teachers
 	has_many :courses_pools, dependent: :destroy
 
-	has_one  :hours, as: :timeable
+	has_one  :time_open, as: :timeable, dependent: :destroy
 
 	has_secure_password
 end

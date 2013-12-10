@@ -41,7 +41,10 @@ describe School do
   it { should_not allow_mass_assignment_of(:password) }
 
   it { should validate_uniqueness_of(:name) }
+  it { should validate_uniqueness_of(:location) }
+
   it { should have_many(:teachers) }
   it { should have_many(:courses_pools).dependent(:destroy) }
 
+  it { should have_one(:time_open) }
 end

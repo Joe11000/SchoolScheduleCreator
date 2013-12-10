@@ -11,4 +11,6 @@ class Room < ActiveRecord::Base
   belongs_to :school
 
   belongs_to :teacher_course_possibility
+
+  has_many :time_requests, as: :timeable, dependent: :destroy
 end

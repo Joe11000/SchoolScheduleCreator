@@ -18,7 +18,6 @@ describe Timespan do
 
     it { expect(FactoryGirl.create(:timespan)).to be_valid}
 
-    # it { @time }
 
   end
 end
