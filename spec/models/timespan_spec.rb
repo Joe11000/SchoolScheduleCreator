@@ -12,8 +12,11 @@ describe Timespan do
     	@timespan = FactoryGirl.create(:timespan)
     end
 
+    # after(:all) do
+    #   @timespan.destroy
+    # end
     after(:all) do
-      @timespan.destroy
+      @timespan.try(:destroy)
     end
 
     it { expect(FactoryGirl.create(:timespan)).to be_valid}

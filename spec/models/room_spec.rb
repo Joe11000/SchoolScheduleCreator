@@ -14,13 +14,19 @@ describe Room do
   	@room.teacher_course_possibilities << @teacher_course_possibility
   end
 
+  # after(:all) do
+  # 	@room.destroy
+  # 	@school.destroy
+  # 	@teacher.destroy
+  # 	@course.destroy
+  # end
+
   after(:all) do
-  	@room.destroy
-  	@school.destroy
-  	@teacher.destroy
-  	@course.destroy
+    @room.try(:destroy)
+    @school.try(:destroy)
+    @teacher.try(:destroy)
+    @course.try(:destroy)
   end
 
-  it
   # expect(FactoryGirl.create(:room)).to be_valid
 end

@@ -46,8 +46,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'binding_of_caller'
 	gem 'guard-rspec'
-	gem 'debugger'
 end
+	gem 'debugger'
 
 group :development do
   gem 'better_errors'

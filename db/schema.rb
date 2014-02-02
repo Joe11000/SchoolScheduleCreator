@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20131210185242) do
 
   create_table "courses_pools", force: true do |t|
     t.string   "subject"
+    t.integer  "subject_number"
     t.integer  "min_students_to_teach"
     t.integer  "school_id"
     t.datetime "created_at"
@@ -40,11 +41,9 @@ ActiveRecord::Schema.define(version: 20131210185242) do
   end
 
   create_table "teacher_course_possibilities", force: true do |t|
-    t.boolean  "scheduled_course", default: false
-    t.datetime "start_time"
-    t.datetime "end_time"
     t.integer  "courses_pool_id"
     t.integer  "teacher_id"
+    t.boolean  "scheduled_course", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

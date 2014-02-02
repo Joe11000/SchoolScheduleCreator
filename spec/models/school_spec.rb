@@ -1,50 +1,68 @@
 require 'spec_helper'
 
 describe School do
-  before(:all) do
-    @school = FactoryGirl.build(:school)
-    @school.password              = "1234"
-    @school.password_confirmation = "1234"
-    @school.save()
 
-    @teacher = FactoryGirl.create(:teacher)
-    @school.teachers << @teacher
+  context "factory" do
+    before(:all) do
+      @school = FactoryGirl.build(:school)
+      @school.password              = "1234" 
+      @school.password_confirmation = "1234" 
+      @school.save
+    end
+
+    it "is valid" do 
+      expect(@school.valid?).to be_true
+      expect(@school.valid?).to be_true
+    end
   end
 
-  after(:all) do
-    @school.destroy
-    @teacher.destroy
+  context "instance" do
+
+    before(:all) do
+      @school = FactoryGirl.build(:school)
+      @school.password              = "1234" 
+      @school.password_confirmation = "1234" 
+      @school.save
+
+      @teacher = FactoryGirl.build(:teacher)
+      @school.teachers << @teacher
+    end
+  
+    after(:all) do
+      @school.try(:destroy)
+      @teacher.try(:destroy)
+    end
+  
+    it "has a name" do
+      expect(@school.name).to eq "SchoolA"
+    end
+  
+    it "has a location" do
+      expect(@school.location).to eq "32124.12345 886.4366743256"
+    end
+  
+    it "has a password" do
+      expect(@school.authenticate('1234')).to be_true
+    end
+  
+    it "has a bio" do
+      expect(@school.bio).to eq "Opened Last Thursday."
+    end
+  
+    it { should have_secure_password }
+  
+    it { should allow_mass_assignment_of(:bio) }
+    it { should allow_mass_assignment_of(:location) }
+    it { should allow_mass_assignment_of(:name) }
+  
+    it { should_not allow_mass_assignment_of(:password) }
+  
+    # it { should validate_uniqueness_of(:name) }
+    # it { should validate_uniqueness_of(:location) }
+  
+    it { should have_many(:teachers) }
+    it { should have_many(:courses_pools).dependent(:destroy) }
+  
+    it { should have_one(:time_open) }
   end
-
-  it "has a name" do
-    expect(@school.name).to eq "SchoolA"
-  end
-
-  it "has a location" do
-    expect(@school.location).to eq "32124.12345 886.4366743256"
-  end
-
-  it "has a password" do
-    expect(@school.authenticate('1234')).to be_true
-  end
-
-  it "has a bio" do
-    expect(@school.bio).to eq "Opened Last Thursday."
-  end
-
-  it { should have_secure_password }
-
-  it { should allow_mass_assignment_of(:bio) }
-  it { should allow_mass_assignment_of(:location) }
-  it { should allow_mass_assignment_of(:name) }
-
-  it { should_not allow_mass_assignment_of(:password) }
-
-  it { should validate_uniqueness_of(:name) }
-  it { should validate_uniqueness_of(:location) }
-
-  it { should have_many(:teachers) }
-  it { should have_many(:courses_pools).dependent(:destroy) }
-
-  it { should have_one(:time_open) }
 end

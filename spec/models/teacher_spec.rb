@@ -5,8 +5,11 @@ describe Teacher do
     @teacher = FactoryGirl.create(:teacher)
 	end
 
+  # after(:all) do
+  #   @teacher.destroy
+  # end
   after(:all) do
-    @teacher.destroy
+    @teacher.try(:destroy)
   end
 
   it "has a name" do
