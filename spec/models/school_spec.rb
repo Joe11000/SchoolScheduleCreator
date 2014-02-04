@@ -5,10 +5,7 @@ describe School do
   context "factory" do
 
     before(:each) do
-      @s = FactoryGirl.build(:school)
-      @s.password              = "1234"
-      @s.password_confirmation = "1234"
-      @s.save
+      @s = FactoryGirl.create(:school)
     end
 
     it "is valid" do
@@ -27,10 +24,7 @@ describe School do
   context "instance" do
 
     before(:all) do
-      @school = FactoryGirl.build(:school)
-      @school.password              = "1234"
-      @school.password_confirmation = "1234"
-      @school.save
+      @school = FactoryGirl.create(:school)
 
       @teacher = FactoryGirl.create(:teacher)
       @school.teachers << @teacher
@@ -65,12 +59,17 @@ describe School do
 
     it { should_not allow_mass_assignment_of(:password) }
 
+    it { should validate_presence_of(:name)}
+    it { should validate_presence_of(:bio)}
+    it { should validate_presence_of(:location)}
+    it { should validate_presence_of(:password)}
+
     it { should validate_uniqueness_of(:name) }
     it { should validate_uniqueness_of(:location) }
 
     it { should have_many(:teachers) }
     it { should have_many(:courses_pools).dependent(:destroy) }
 
-    it { should have_one(:time_open) }
+    it { should have_one(:time_open).class_name("Timespan").dependent(:destroy) }
   end
 end
