@@ -12,7 +12,6 @@ FactoryGirl.define do
     # association :timeable, factory: :timespan
   end
 
-
 ################################################################
     # same as location, just different way of doing it
     sequence :name do  |n|
@@ -27,6 +26,7 @@ FactoryGirl.define do
     name
     location
     bio       "Opened Last Thursday."
+    time_open
 
     after(:build) do |school|
       school.password              = "1234"
