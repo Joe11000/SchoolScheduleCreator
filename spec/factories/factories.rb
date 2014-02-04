@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :courses_pool do
+  factory :courses_pool, aliases: [:course] do
     subject                 "english"
     subject_number          101
     min_students_to_teach   2
@@ -12,24 +12,27 @@ FactoryGirl.define do
     # association :timeable, factory: :timespan
   end
 
-  
 
-    sequence :location do  |n| 
-      "#{n}.12345 #{n}.4366743256" 
+################################################################
+    # same as location, just different way of doing it
+    sequence :name do  |n|
+      "School#{n}"
     end
 
-    sequence :name do  |n| 
-      "School#{n}" 
+    sequence :location do  |n|
+       "#{n}.12345 #{n}.4366743256"
     end
 
   factory :school do
-  	name                 
+  	name
     location
   	bio                   "Opened Last Thursday."
   	# association :timeable, factory: :timespan
   end
+#################################################################
 
   factory :teacher_course_possibility do #, :class => 'TeacherCoursePossibilities' do
+    course
   	teacher
   	scheduled_course   false
   end

@@ -3,7 +3,8 @@ class CoursesPool < ActiveRecord::Base
 
   belongs_to :school
 
-  has_many :teacher_course_possibilities, dependent: :destroy
+  has_many :teacher_course_possibilities, dependent:  :destroy,
+                                          inverse_of: :courses_pool
 
   has_many :teachers, through: :teacher_course_possibilities,
                       source:  :teacher

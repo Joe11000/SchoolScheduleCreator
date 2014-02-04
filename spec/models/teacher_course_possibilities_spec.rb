@@ -2,9 +2,15 @@ require 'spec_helper'
 
 describe TeacherCoursePossibility do
 
-  it { should belong_to(:teacher) }
-  it { should belong_to(:courses_pool) }
-	it { should allow_mass_assignment_of(:scheduled_course) }
+	describe "factory" do
+		it "is valid" do
+			FactoryGirl.build(:courses_pool).should be_valid
+		end
+
+		after(:all) do
+
+    end
+	end
 
 	describe "instances" do
 		before(:all) do
@@ -26,5 +32,8 @@ describe TeacherCoursePossibility do
   end
 
 		it {}
+  it { should belong_to(:teacher) }
+  it { should belong_to(:courses_pool) }
+	it { should allow_mass_assignment_of(:scheduled_course) }
 	end
 end
