@@ -1,9 +1,9 @@
 class School < ActiveRecord::Base
   attr_accessible :name, :bio, :location
 
-  validates :name,     presence: true #, uniqueness: true
+  validates :name,     presence: true, uniqueness: true
   validates :bio,      presence: true
-  validates :location, presence: true #, uniqueness: true
+  validates :location, presence: true, uniqueness: true
   validates :password, presence: true
 
   has_many :teachers

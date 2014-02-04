@@ -26,10 +26,9 @@ cp = CoursesPool.create(subject:    "english",
 
 teacher.courses_pools << cp
 
-teacher.courses_could_teach.scheduled_course = true
 
-teacher.courses_could_teach.class_time = Timespan.create(start_time: Time.new(2013,12,31,6,30),
-	                                                     end_time:   Time.new(2013,12,31,7,30))
+# teacher.courses_could_teach.class_time = Timespan.create(start_time: Time.new(2013,12,31,6,30),
+# 	                                                     end_time:   Time.new(2013,12,31,7,30))
 
 school.teachers << teacher
 school.courses_pools << cp

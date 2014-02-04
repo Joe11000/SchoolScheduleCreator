@@ -12,9 +12,19 @@ FactoryGirl.define do
     # association :timeable, factory: :timespan
   end
 
+  
+
+    sequence :location do  |n| 
+      "#{n}.12345 #{n}.4366743256" 
+    end
+
+    sequence :name do  |n| 
+      "School#{n}" 
+    end
+
   factory :school do
-  	name                  "SchoolA"
-  	location              "32124.12345 886.4366743256"
+  	name                 
+    location
   	bio                   "Opened Last Thursday."
   	# association :timeable, factory: :timespan
   end
@@ -30,8 +40,8 @@ FactoryGirl.define do
   	# association :timeable, factory: :timespan
   end
 
-  # factory :timespan, aliases: [:break_time, :time_open, :occupied_time], class: "Timespan" do
-  # 	start_time    Time.new(2013,12,31,6,30)
-  # 	end_time      Time.new(2013,12,31,7,30)
-  # end
+  factory :timespan, aliases: [:break_time, :time_open, :occupied_time], class: "Timespan" do
+  	start_time    Time.new(2013,12,31,6,30)
+  	end_time      Time.new(2013,12,31,7,30)
+  end
 end

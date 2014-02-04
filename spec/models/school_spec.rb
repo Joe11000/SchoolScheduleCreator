@@ -3,16 +3,24 @@ require 'spec_helper'
 describe School do
 
   context "factory" do
-    before(:all) do
-      @school = FactoryGirl.build(:school)
-      @school.password              = "1234" 
-      @school.password_confirmation = "1234" 
-      @school.save
+
+    before(:each) do
+      @s = FactoryGirl.build(:school)
+      @s.password              = "1234" 
+      @s.password_confirmation = "1234" 
+      @s.save
     end
 
     it "is valid" do 
-      expect(@school.valid?).to be_true
-      expect(@school.valid?).to be_true
+      expect(@s.valid?).to be_true
+    end
+
+    it "is saveable to db" do
+      expect(@s.new_record?).to be_false
+    end
+
+    after(:all) do
+      @s.try(:destroy)
     end
   end
 
@@ -24,7 +32,7 @@ describe School do
       @school.password_confirmation = "1234" 
       @school.save
 
-      @teacher = FactoryGirl.build(:teacher)
+      @teacher = FactoryGirl.create(:teacher)
       @school.teachers << @teacher
     end
   
@@ -34,11 +42,11 @@ describe School do
     end
   
     it "has a name" do
-      expect(@school.name).to eq "SchoolA"
+      @school.name.should match(/^school\d*$/i) 
     end
   
     it "has a location" do
-      expect(@school.location).to eq "32124.12345 886.4366743256"
+      expect(@school.location).should match(/^\d*[.]\d*\s\d*[.]\d*$/)
     end
   
     it "has a password" do
@@ -57,8 +65,8 @@ describe School do
   
     it { should_not allow_mass_assignment_of(:password) }
   
-    # it { should validate_uniqueness_of(:name) }
-    # it { should validate_uniqueness_of(:location) }
+    it { should validate_uniqueness_of(:name) }
+    it { should validate_uniqueness_of(:location) }
   
     it { should have_many(:teachers) }
     it { should have_many(:courses_pools).dependent(:destroy) }

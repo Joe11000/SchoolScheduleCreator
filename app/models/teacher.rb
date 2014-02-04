@@ -7,17 +7,20 @@ class Teacher < ActiveRecord::Base
   belongs_to :school
 
   has_many :break_times, as: :timeable, class_name: "Timespan", dependent: :destroy
-  has_many :teacher_course_possibilities
-  has_many :courses_could_teach, # -> where('1 = 1'),
-                                 through:     :teacher_course_possibilities,
-                                 source:      :courses_pool,
-                                 dependent:   :destroy
+
+  has_many :courses_pools,  through: :teacher_course_possibilities
+
+  has_many :teacher_course_possibilities, dependent: :destroy
+
+  has_many :courses_could_teach, through: :teacher_course_possibilities,
+                                 source:  :courses_pool
                                  # foreign_key: "teacher_course_possibility_id",
 
-  def courses_teaching
-     CoursesPool.joins(teacher_course_possibilities: :teacher).where("teacher_course_possibilities.scheduled_course = :tf 
-                                                                      AND teachers.id = :id", { tf: true, id: id })
-  end 
+  has_many :courses_teaching, -> { where('teacher_course_possibilities.scheduled_course = ? ', true) },   
+                                 through: :teacher_course_possibilities,                                  
+                                 source:  :courses_pool                                                  
+
+
 
 
   def add_class_to_teach(class_id = 1)
@@ -35,9 +38,9 @@ class Teacher < ActiveRecord::Base
     end
   end
 
-  def add_class_could_teach
-  #   courses_poolTeacherCoursePossibility
-  end
+  # def add_class_could_teach(course_id_that_exists)
+  #    courses_pools << CoursePoolscourse_id_that_exists
+  # end
 
 
   def available?(start_datetime, end_datetime)
