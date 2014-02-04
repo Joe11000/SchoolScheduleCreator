@@ -6,8 +6,7 @@ class CoursesPool < ActiveRecord::Base
   has_many :teacher_course_possibilities, dependent:  :destroy,
                                           inverse_of: :courses_pool
 
-  has_many :teachers, through: :teacher_course_possibilities,
-                      source:  :teacher
+  has_many :teachers, through: :teacher_course_possibilities #,  source:  :teacher
 
   validates  :min_students_to_teach, presence: true,
     	                               numericality: { integer_only: true,

@@ -12,7 +12,6 @@ describe School do
     end
 
     it "is valid" do
-      debugger
       expect(@s.valid?).to be_true
     end
 
