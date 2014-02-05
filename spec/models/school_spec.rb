@@ -28,6 +28,7 @@ describe School do
 
       @teacher = FactoryGirl.create(:teacher)
       @school.teachers << @teacher
+      @school.time_open = FactoryGirl.create(:time_open)
     end
 
     after(:all) do
@@ -51,6 +52,7 @@ describe School do
       expect(@school.bio).to eq "Opened Last Thursday."
     end
 
+
     it { should have_secure_password }
 
     it { should allow_mass_assignment_of(:bio) }
@@ -69,6 +71,11 @@ describe School do
 
     it { should have_many(:teachers) }
     it { should have_many(:courses_pools).dependent(:destroy) }
+
+    it "has a days open" do
+      expect(@school.time_open.start_time).to be_an_instance_of(ActiveSupport::TimeWithZone)
+      expect(@school.time_open.end_time).to be_an_instance_of(ActiveSupport::TimeWithZone)
+    end
 
     it { should have_one(:time_open).class_name("Timespan").dependent(:destroy) }
   end

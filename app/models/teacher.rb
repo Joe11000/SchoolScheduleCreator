@@ -23,8 +23,6 @@ class Teacher < ActiveRecord::Base
                                  source:  :courses_pool
 
 
-
-
   def add_class_to_teach(class_id = 1)
     t =  TeacherCoursePossibility.joins(:teacher, :courses_pool).where("teachers.id = #{id} AND courses_pools.id = #{class_id}")
 

@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe CoursesPool do
   before(:all) do
-  	@school = FactoryGirl.build(:school, name: "SchoolName_CoursesPoolsSpec")
-    @school.password = "1234"
-    @school.password_confirmation = "1234"
-    @school.save
+  	@school = FactoryGirl.create(:school)
 
   	@courses_pool = FactoryGirl.create(:courses_pool)
   end
