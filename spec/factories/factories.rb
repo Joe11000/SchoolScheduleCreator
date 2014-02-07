@@ -27,6 +27,7 @@ FactoryGirl.define do
     location
     bio       "Opened Last Thursday."
     time_open
+    room
 
     after(:build) do |school|
       school.password              = "1234"

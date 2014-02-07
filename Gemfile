@@ -6,6 +6,9 @@ gem 'rails', '4.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+# gem "haml", "~> 4.0.5"
+# gem "haml-rails"
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -56,6 +59,7 @@ end
 group :test do
 	gem 'capybara'
 	gem 'launchy'
+  gem 'database_cleaner'
 end
 
 group :production do

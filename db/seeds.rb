@@ -32,3 +32,8 @@ teacher.courses_pools << cp
 
 school.teachers << teacher
 school.courses_pools << cp
+
+school.rooms << Room.create(number: '1551', capacity: 30)
+
+Schedule.create
+

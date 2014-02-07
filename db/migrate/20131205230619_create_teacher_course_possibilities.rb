@@ -5,7 +5,7 @@ class CreateTeacherCoursePossibilities < ActiveRecord::Migration
       t.belongs_to :teacher
 
       t.boolean    :scheduled_course, default: false
-      
+
       t.timestamps
     end
   end
