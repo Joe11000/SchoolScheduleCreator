@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe WelcomesController do
+describe TeachersController do
 
-  describe "GET 'welcome'" do
+  describe "GET 'add_teachers'" do
     it "returns http success" do
-      get '/'
+      get 'add_teachers'
       response.should be_success
-      # page.
     end
   end
+
 end

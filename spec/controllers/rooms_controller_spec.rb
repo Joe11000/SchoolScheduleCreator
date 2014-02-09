@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe WelcomesController do
+describe RoomsController do
 
-  describe "GET 'welcome'" do
+  describe "GET 'add_rooms'" do
     it "returns http success" do
-      get '/'
+      get 'add_rooms'
       response.should be_success
-      # page.
     end
   end
+
 end

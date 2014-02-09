@@ -8,7 +8,7 @@ FactoryGirl.define do
 
   factory :room do
     capacity 25
-    number   1
+    sequence(:number) {|n| "#{n}" }
     # association :timeable, factory: :timespan
   end
 
@@ -27,7 +27,7 @@ FactoryGirl.define do
     location
     bio       "Opened Last Thursday."
     time_open
-    room
+    # room
 
     after(:build) do |school|
       school.password              = "1234"

@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe WelcomesController do
+describe CoursesController do
 
-  describe "GET 'welcome'" do
+  describe "GET 'add_courses'" do
     it "returns http success" do
-      get '/'
+      get 'add_courses'
       response.should be_success
-      # page.
     end
   end
+
 end
