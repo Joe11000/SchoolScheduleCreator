@@ -1,6 +1,6 @@
 class SessionController < ApplicationController
 	def login
-    debugger
+    # debugger
     # if current_school
     #   debugger
     # 	redirect_to root_path and return
