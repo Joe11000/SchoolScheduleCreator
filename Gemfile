@@ -49,15 +49,15 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'binding_of_caller'
 	gem 'guard-rspec'
+	gem 'capybara'
 end
-	gem 'debugger'
+  gem 'debugger'
 
 group :development do
   gem 'better_errors'
 end
 
 group :test do
-	gem 'capybara'
 	gem 'launchy'
   gem 'database_cleaner'
 end

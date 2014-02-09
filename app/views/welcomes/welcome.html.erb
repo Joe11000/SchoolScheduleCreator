@@ -1,15 +1,20 @@
-<%= link_to "New School", new_school_path %>
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
 
-<%= form_tag new_school_url, remote: true do  %>
+<%= link_to "New School", new_school_path, id: "new_school" %>
 
-<%=  label_tag :name, "School Name"%>
-<%=  text_field_tag 'name' %>
-<br>
-<%=  label_tag :name, "School Name"%>
-<%=  label_tag :password %>
-<br>
-<%=  password_field_tag 'password' %>
-<br>
-<%=  password_field_tag 'confirmation'%>
+<%= form_tag root_url, id: "login_form" do  %>
+
+  <%=  label_tag :name, "School Name"%>
+  <%=  text_field_tag 'name' %>
+  <br>
+  <%=  label_tag :password %>
+  <br>
+  <%=  password_field_tag 'password' %>
+  <br>
+  <%=  password_field_tag 'password_confirmation'%>
+  <br>
+  <%= button_tag "login", id: "login_id",name: "Login" %>
 
 <% end %>
