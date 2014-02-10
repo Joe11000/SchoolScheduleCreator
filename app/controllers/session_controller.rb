@@ -13,19 +13,8 @@ class SessionController < ApplicationController
 		end
   end
 
-
-  # def logout
-		# school = School.find_by_name(params[:name])
-
-		# if school && school.authenticate(params[:password]) && params[:password] == params[:password_confirmation]
-  #     # debugger
-  #     session[:school_id] = school.id
-  #     debugger
-  #     redirect_to school_path(school)
-  #     # "schools/show.html.erb"
-  #   else
-		#   flash[:login_error] = "Unsuccessful Log In"
-	 #    redirect_to root_path
-		# end
-  # end
+  def logout
+		session[:school_id] = nil
+		redirect_to root_path
+  end
 end
