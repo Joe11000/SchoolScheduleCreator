@@ -1,9 +1,6 @@
 class SchoolsController < ApplicationController
 	def new
-		debugger
 		@school = School.new
-		debugger
-		''
   end
 
 	def show
@@ -11,26 +8,30 @@ class SchoolsController < ApplicationController
 	end
 
 	def create
-		if params[:password] != params[:password_confirmation]
+		new_school = School.new(params[:school])
+
+		if params[:password] != params[:password_confirmation] # error passwords not same
 		  debugger
+			@school = new_school
 			flash[:notice] = "School Name Exists Already"
 			flash[:color]  = "Error"
 			redirect_to new_school_course(current_school)
 
-    elsif not School.find_by_name(params[:name])
+    elsif School.find_by_name(params[:name])  # error school exists already
     	debugger
-    	new_school = School.new(params[:school])
-    	debugger
-    	# new_school.password = params[:password]
-		  redirect_to new_school_course(current_school)
+			@school = new_school
+			flash[:notice] = "School Name Exists Already"
+			flash[:color]  = "Error"
+			redirect_to new_school_course(current_school)
 
 		else
-    	debugger
-			flash[:notice] = "School Name Exists Already"
-			flash[:color]  = "Error"
-			@school_name_user_choose = params[:name]
-			# @password_user_choose = params[:password]
-			redirect_to new_school_course(current_school)
+    	new_school.password = params[:school][:password]
+    	new_school.password_confirmation = params[:school][:password_confirmation]
+    	new_school.save
+    	session[:school_id] = new_school.id
+
+		  redirect_to new_school_course_path(new_school)
+
 		end
 	end
 

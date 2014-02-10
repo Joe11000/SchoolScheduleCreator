@@ -1,10 +1,3 @@
-# School.destroy_all
-# Teacher.destroy_all
-# Timespan.destroy_all
-# CoursesPool.destroy_all
-# TeacherCoursePossibility.destroy_all
-
-
 school = School.new(name: "School_A",
 	                  location: "43.5253 1253.5362",
 	                  bio: "Seeds...This is the Bio")
