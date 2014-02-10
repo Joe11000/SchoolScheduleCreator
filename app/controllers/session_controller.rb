@@ -5,12 +5,11 @@ class SessionController < ApplicationController
 
 		if school && school.authenticate(params[:password])
       session[:school_id] = school.id
-      redirect_to @school
+      redirect_to school
     else
 		  flash[:notice] = "Unsuccessful Log In"
 		  flash[:color]  = "Error"
-
-	    render 'welcomes/welcome.html.erb'
+	    render "welcomes/welcome.html.erb"
 		end
   end
 

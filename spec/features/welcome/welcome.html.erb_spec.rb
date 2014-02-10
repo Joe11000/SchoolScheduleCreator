@@ -34,14 +34,15 @@ describe "welcome page" do
     it "can login if a current school" do
       school = FactoryGirl.create(:school)
 
+      save_and_open_page
       within("#login_form") do
         fill_in :name,     with: school.name
         fill_in :password, with: 1234
 
         click_button('login')
       end
-
       current_path.should eq school_path(school)
+      save_and_open_page
 
       school.try(:destroy)
     end
