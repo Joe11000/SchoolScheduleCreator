@@ -5,7 +5,7 @@ class SessionController < ApplicationController
 
 		if school && school.authenticate(params[:password])
       session[:school_id] = school.id
-      redirect_to school_path(school)
+      redirect_to @school
     else
 		  flash[:notice] = "Unsuccessful Log In"
 		  flash[:color]  = "Error"

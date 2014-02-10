@@ -35,8 +35,8 @@ describe "welcome page" do
       school = FactoryGirl.create(:school)
 
       within("#login_form") do
-        fill_in :name,                  with: school.name
-        fill_in :password,              with: 1234
+        fill_in :name,     with: school.name
+        fill_in :password, with: 1234
 
         click_button('login')
       end
@@ -48,8 +48,8 @@ describe "welcome page" do
 
     it "sees an error if login incorrect" do
     	within("#login_form") do
-        fill_in :name,                  with:"-=Not_REAL423xs?^?"
-        fill_in :password,              with: "1d3"
+        fill_in :name,     with:"-=Not_REAL423xs?^?"
+        fill_in :password, with: "1d3"
       end
 
       click_button('login')

@@ -1,0 +1,58 @@
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+
+<%= form_for @school do |f| %>
+  Enter School Name: <%= f.text_field :name %>
+  <br>
+  <br>
+  Password: <%= f.text_field :password %>
+  <br>
+  <br>
+  Password Confirmation: <%= f.text_field :password_confirmation %>
+  <br>
+  <br>
+  Location: <%= f.text_field :location %>
+  <br>
+  <br>
+  Fun Fact About Your School: <%= f.text_field :bio %>
+  <br>
+  <br>
+  <%= f.button :next %>
+
+<% end %>
+
+
+
+
+
+
+<!--
+
+<%= #form_tag schools_url, id: "new_school_form" do  %>
+
+  <%= # text_field_tag 'name', nil, placeholder: "Enter School Name" %>
+  <br>
+  <br>
+  <%=  #text_field_tag 'Password' , nil, placeholder: "Password "%>
+  <br>
+  <br>
+  <%=  #text_field_tag 'Password Confirmation', nil, placeholder: "Password Confirmation" %>
+  <br>
+  <br>
+  <%= # text_field_tag 'location', nil, placeholder: "location "%>
+  <br>
+  <br>
+  <%= # text_field_tag 'bio'     , nil, placeholder: "Fun Fact About Your School"%>
+  <br>
+  <br>
+  <%=# button_tag "next" %>
+
+<%# end %>
+ -->
+
+<!--
+chool = School.new(name: "School_A",
+	                  location: "43.5253 1253.5362",
+	                  bio: "Seeds...This is the Bio") -->
