@@ -50,7 +50,6 @@ describe "welcome page" do
     	within("#login_form") do
         fill_in :name,                  with:"-=Not_REAL423xs?^?"
         fill_in :password,              with: "1d3"
-        fill_in :password_confirmation, with: "1d3"
       end
 
       click_button('login')
