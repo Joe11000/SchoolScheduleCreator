@@ -27,7 +27,6 @@ describe "welcome page" do
       within("#login_form") do
         find_field('name').visible?
         find_field('password').visible?
-        find_field('password_confirmation').visible?
         find_button('login').visible?
       end
     end
@@ -38,15 +37,11 @@ describe "welcome page" do
       within("#login_form") do
         fill_in :name,                  with: school.name
         fill_in :password,              with: 1234
-        fill_in :password_confirmation, with: 1234
 
         click_button('login')
       end
-      # save_and_open_page
-      # current_path.should eq root_path
 
       current_path.should eq school_path(school)
-      # save_and_open_page
 
       school.try(:destroy)
     end

@@ -1,20 +1,15 @@
 class SessionController < ApplicationController
-	def login
-    # debugger
-    # if current_school
-    #   debugger
-    # 	redirect_to root_path and return
-    # end
 
+	def login
 		school = School.find_by_name(params[:name])
 
-		if school && school.authenticate(params[:password]) && params[:password] == params[:password_confirmation]
+		if school && school.authenticate(params[:password])
       session[:school_id] = school.id
       redirect_to school_path(school)
     else
 		  flash[:notice] = "Unsuccessful Log In"
 		  flash[:color]  = "Error"
-      # debugger
+
 	    render 'welcomes/welcome.html.erb'
 		end
   end

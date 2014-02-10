@@ -1,7 +1,14 @@
 SchoolScheduleCreator::Application.routes.draw do
 
   root to: 'welcomes#welcome'
-  resources :schools
+
+  shallow do
+    resources :schools  do
+      resources :courses
+      # resources :teachers
+      # resources :rooms
+    end
+  end
 
   post '/', to: "session#login"
 
