@@ -1,0 +1,16 @@
+
+
+<table>
+  <th>
+  	<td>Course Name</td>
+  	<td>Course Number</td>
+  	<td># Of Students</td>
+  </th>
+<% @school.courses_pools.each do |course| %>
+  <tr>
+    <td><%= course.subject %></td>
+    <td><%= course.subject_number %></td>
+    <td><%= course.min_students_to_teach %></td>
+  </tr>
+
+</table>
