@@ -6,9 +6,9 @@ class CoursesController < ApplicationController
 
   def new
 
-  	debugger
+  	# debugger
   	@school = current_school
-  	debugger
+  	# debugger
   end
 
   def edit
