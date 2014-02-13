@@ -5,7 +5,7 @@ SchoolScheduleCreator::Application.routes.draw do
   shallow do
     resources :schools  do
       resources :courses
-      # resources :teachers
+      resources :teachers
       # resources :rooms
     end
   end

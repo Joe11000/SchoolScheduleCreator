@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.2'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -36,7 +36,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'
 
 ## I ADDED THESE BELOW
 
@@ -60,6 +60,7 @@ end
 group :test do
 	gem 'launchy'
   gem 'database_cleaner'
+
 end
 
 group :production do

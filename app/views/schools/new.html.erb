@@ -4,7 +4,7 @@
 
 
 <%= form_for @school do |f| %>
-  Enter School Name: <%= f.text_field :name, value: "School_A" + rand(88888).to_s %>
+  Enter School Name: <%= f.text_field :name, value: School.count %>
   <br>
   <br>
   Password: <%= f.text_field :password, value: 1234 %>
@@ -13,7 +13,7 @@
   Password Confirmation: <%= f.text_field :password_confirmation, value: 1234 %>
   <br>
   <br>
-  Location: <%= f.text_field :location, value: "121.2 23.43" %>
+  Location: <%= f.text_field :location, value: "#{School.count}.#{rand(888)} #{School.count}.#{rand(888)}" %>
   <br>
   <br>
   Fun Fact About Your School: <%= f.text_field :bio, value: "We are sweet" %>
