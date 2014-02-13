@@ -13,12 +13,12 @@ $(function()
     if(a == "" || b == "" || c == "")
     	return;
 
-    // f = document.createElement("FORM")
+    id = b.split(' ')[0];
 
     string = "<tr>" +
-                "<td><input id='course' name='course[course]' type='text' value='" + a + "'></td>" +
-                "<td><input id='course_number' name='course[course_number]' type='text' value='" + b + "'></td>" +
-                "<td><input id='num_students' name='course[num_students]' type='text' value='" + c + "'></td>" +
+                "<td><input id='" + id +          "' name='course[" + id + "[name]]' type='text' value='" + a + "'></td>" +
+                "<td><input id='" + id +   "_course' name='course[" + id + "[number]]' type='text' value='" + b + "'></td>" +
+                "<td><input id='" + id + "_students' name='course[" + id + "[students]]' type='text' value='" + c + "'></td>" +
                 "<td><img alt='Delete' height='50' width='50' src='/assets/delete.png' ></td>" +
              "</tr>"
 

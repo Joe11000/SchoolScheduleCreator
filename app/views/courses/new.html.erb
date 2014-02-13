@@ -1,8 +1,5 @@
-
-
 <h1>Add Courses</h1>
 
-  <%# my_hash = {key: "value"} %>
 	<%= text_field_tag :name, nil, value: "Advanced Algebra",placeholder: "ie Algebra"%>
 	<%= text_field_tag :number, nil,value: "Math_115", placeholder: "ie MATH134"%>
 	<%= text_field_tag :num_students, nil, value: "23",  placeholder: "ie 25"%>
@@ -10,25 +7,10 @@
 	<br><br><br>
 
 
-
   <%= form_tag school_courses_path  do %>
 	<%= render partial: "courses_table" %>
 	<%= button_tag "next", id: "next_button" %>
   <% end %>
 
-
-
-
 <%# Calendar maybe %>
 <!-- https://github.com/robmonie/jquery-week-calendar/wiki -->
-
-
-
-
-
-  <%# form_tag school_courses_path  do %>
-	<%# render partial: "courses_table" %>
-	<%# button_tag "next", id: "next_button" %>
-	<%# hidden_field_tag "courses", my_hash %>
-  <%# image_tag 'delete.png' , size: "50x50"%>
-  <%# end %>

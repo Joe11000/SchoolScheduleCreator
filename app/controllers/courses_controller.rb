@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
   end
 
   def new
-# debugger
+   # debugger
   	# debugger
   	@school = current_school
   	# debugger
@@ -15,11 +15,16 @@ class CoursesController < ApplicationController
   def create
     debugger
     debugger
-    redirect_to new_schools_teacher(current_school)
+    redirect_to new_school_teacher_path(current_school.id)
   end
 
   def edit
   	debugger
   	@school = User.includes(:courses_pools).where("user.id = ?", current_school.id)
   end
+
+  def update
+    # if update set of courses doesn't contain all from School has in past. Then save and delete time
+  end
+
 end

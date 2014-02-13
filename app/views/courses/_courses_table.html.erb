@@ -1,16 +1,15 @@
-
 <table id="courses_table" class="tablesorter">
   <th>
   	<td>Course Name</td>
   	<td>Course Number</td>
   	<td># Of Students</td>
   </th>
-    <tr>
-    <td><%= text_field_tag :course,        nil, value: "Science" %></td>
-    <td><%= text_field_tag :course_number, nil, value: "BIO_216" %></td>
-    <td><%= text_field_tag :num_students,   nil, value: 15 %></td>
-    <td><%= image_tag 'delete.png', size: "50x50"%></td>
-  </tr>
+    <!-- <tr> -->
+    <!-- <td><%# text_field_tag :course,        nil, value: "Science" %></td> -->
+    <!-- <td><%# text_field_tag :course_number, nil, value: "BIO_216" %></td> -->
+    <!-- <td><%# text_field_tag :num_students,   nil, value: 15 %></td> -->
+    <!-- <td><%# image_tag 'delete.png', size: "50x50"%></td> -->
+  <!-- </tr> -->
 <% @school.courses_pools.each do |course| %>
   <tr>
     <td><%= text_field_tag course.subject %></td>
