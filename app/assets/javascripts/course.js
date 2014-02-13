@@ -16,9 +16,9 @@ $(function()
     id = b.split(' ')[0];
 
     string = "<tr>" +
-                "<td><input id='" + id +          "' name='course[" + id + "[name]]' type='text' value='" + a + "'></td>" +
-                "<td><input id='" + id +   "_course' name='course[" + id + "[number]]' type='text' value='" + b + "'></td>" +
-                "<td><input id='" + id + "_students' name='course[" + id + "[students]]' type='text' value='" + c + "'></td>" +
+                "<td><input id='" + id +          "' name='courses[" + id + "[course]]' type='text' value='" + a + "'></td>" +
+                "<td><input id='" + id +   "_course' name='courses[" + id + "[course_number]]' type='text' value='" + b + "'></td>" +
+                "<td><input id='" + id + "_students' name='courses[" + id + "[min_students_to_teach]]' type='text' value='" + c + "'></td>" +
                 "<td><img alt='Delete' height='50' width='50' src='/assets/delete.png' ></td>" +
              "</tr>"
 

@@ -14,6 +14,11 @@ class CoursesController < ApplicationController
 
   def create
     debugger
+    params[:courses].values.each do |course|
+      debugger
+      current_school.courses_pools.create(course)
+    end
+
     debugger
     redirect_to new_school_teacher_path(current_school.id)
   end

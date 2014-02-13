@@ -13,9 +13,12 @@
 
 ActiveRecord::Schema.define(version: 20140207184151) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "courses_pools", force: true do |t|
-    t.string   "subject"
-    t.integer  "subject_number"
+    t.string   "course"
+    t.string   "course_number"
     t.integer  "min_students_to_teach"
     t.integer  "school_id"
     t.datetime "created_at"

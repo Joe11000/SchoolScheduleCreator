@@ -10,11 +10,11 @@ teacher = Teacher.create(name: "Teacher_A",
 
 
 teacher.break_times << Timespan.create(start_time: Time.new(2013,12,31,6,30),
-	                                   end_time: Time.new(2013,12,31,7,30))
+	                                     end_time: Time.new(2013,12,31,7,30))
 
 
-cp = CoursesPool.create(subject:    "english",
-	                      subject_number: 102,
+cp = CoursesPool.create(course:    "english",
+	                      course_number: 102,
 	                      min_students_to_teach: 2)
 
 teacher.courses_pools << cp
