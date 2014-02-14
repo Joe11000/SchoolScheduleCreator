@@ -41,4 +41,7 @@ class CoursesController < ApplicationController
     # if update set of courses doesn't contain all from School has in past. Then save and delete time
   end
 
+  def show
+  end
+
 end

@@ -1,24 +1,22 @@
-<% if flash[:notice] %>
-  <p><%= flash[:notice] %></p>
-<% end %>
+<%= render partial: "school_form", locals: { button_name: "next" } %>
 
 
-<%= form_for @school do |f| %>
-  Enter School Name: <%= f.text_field :name, value: School.count %>
+<!-- <%#= form_for @school do |f| %>
+  Enter School Name: <%#= f.text_field :name, value: School.count %>
   <br>
   <br>
-  Password: <%= f.text_field :password, value: 1234 %>
+  Password: <%#= f.text_field :password, value: 1234 %>
   <br>
   <br>
-  Password Confirmation: <%= f.text_field :password_confirmation, value: 1234 %>
+  Password Confirmation: <%#= f.text_field :password_confirmation, value: 1234 %>
   <br>
   <br>
-  Location: <%= f.text_field :location, value: "#{School.count}.#{rand(888)} #{School.count}.#{rand(888)}" %>
+  Location: <%#= f.text_field :location, value: "#{School.count}.#{rand(888)} #{School.count}.#{rand(888)}" %>
   <br>
   <br>
-  Fun Fact About Your School: <%= f.text_field :bio, value: "We are sweet" %>
+  Fun Fact About Your School: <%#= f.text_field :bio, value: "We are sweet" %>
   <br>
   <br>
-  <%= f.submit :next%>
+  <%#= f.submit :next%>
 
-<% end %>
+<%# end %> -->
