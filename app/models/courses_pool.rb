@@ -2,7 +2,7 @@ class CoursesPool < ActiveRecord::Base
 
   # layout: "new_courses_layout", only: [:new, :edit]
 
-  attr_accessible :course, :min_students_to_teach, :course_number
+  attr_accessible :subject, :min_students_to_teach, :course_number
 
   belongs_to :school
 

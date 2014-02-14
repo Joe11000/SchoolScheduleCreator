@@ -1,22 +1,29 @@
 class CoursesController < ApplicationController
    layout "new_courses_layout"
-  def add
-    debugger
-
-  end
 
   def new
-   # debugger
-  	# debugger
-  	@school = current_school
-  	# debugger
+    @school = current_school
   end
 
   def create
     debugger
-    params[:courses].values.each do |course|
-      debugger
-      current_school.courses_pools.create(course)
+
+    if current_school.courses_pools.count == 0
+      params[:courses].values.each do |course|
+        debugger
+        current_school.courses_pools.create(course)
+      end
+    else
+      params[:courses].values.each do |course|
+        debugger
+        c = CoursesPool.find_by_course_number(course[:course_number])
+
+        if c
+          c.update_attributes(course)
+        else
+          current_school.courses_pools.create(course)
+        end
+      end
     end
 
     debugger
@@ -24,8 +31,10 @@ class CoursesController < ApplicationController
   end
 
   def edit
-  	debugger
-  	@school = User.includes(:courses_pools).where("user.id = ?", current_school.id)
+  	# debugger
+  	@school = School.includes(:courses_pools).where("schools.id = ?", current_school.id)
+    # debugger
+    # ''
   end
 
   def update

@@ -7,7 +7,7 @@
 <br><br><br>
 
 
-<%= form_tag school_courses_path  do %>
+<%= form_tag school_courses_path(@school)  do %>
   <%= render partial: "courses_table" %>
   <%= button_tag "next", id: "next_button" %>
 <% end %>
