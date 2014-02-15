@@ -13,20 +13,21 @@ teacher.break_times << Timespan.create(start_time: Time.new(2013,12,31,6,30),
 	                                     end_time: Time.new(2013,12,31,7,30))
 
 
-cp = CoursesPool.create(subject:    "english",
-	                      course_number: 102,
-	                      min_students_to_teach: 2)
+cp1 = CoursesPool.create(subject:    "english",
+	                      course_number: "ENG_102",
+	                      min_students_to_teach: 15)
+cp2 = CoursesPool.create(subject:    "math",
+	                      course_number: "MAT_521",
+	                      min_students_to_teach: 6)
 
-teacher.courses_pools << cp
+teacher.courses_pools << cp1
+teacher.courses_pools << cp2
 
-
-# teacher.courses_could_teach.class_time = Timespan.create(start_time: Time.new(2013,12,31,6,30),
-# 	                                                     end_time:   Time.new(2013,12,31,7,30))
 
 school.teachers << teacher
-school.courses_pools << cp
+school.courses_pools << cp1
+school.courses_pools << cp2
 
 school.rooms << Room.create(number: '1551', capacity: 30)
 
 Schedule.create
-

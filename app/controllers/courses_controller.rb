@@ -11,7 +11,10 @@ class CoursesController < ApplicationController
     if current_school.courses_pools.count == 0
       params[:courses].values.each do |course|
         debugger
+        caw = CoursesPool.new(course)
+        debugger
         current_school.courses_pools.create(course)
+        debugger
       end
     else
       params[:courses].values.each do |course|

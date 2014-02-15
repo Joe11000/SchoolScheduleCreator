@@ -41,6 +41,7 @@ gem 'bcrypt-ruby'
 ## I ADDED THESE BELOW
 
 gem "protected_attributes"
+  gem "capybara-webkit"
 
 group :development, :test do
   gem 'rspec-mocks'
@@ -48,8 +49,9 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'binding_of_caller'
-	gem 'guard-rspec'
-	gem 'capybara'
+  gem 'guard-rspec'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
   gem 'debugger'
 
@@ -59,7 +61,6 @@ end
 
 group :test do
 	gem 'launchy'
-  gem 'database_cleaner'
 
 end
 
