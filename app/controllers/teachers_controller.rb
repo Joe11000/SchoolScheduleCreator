@@ -1,4 +1,7 @@
 class TeachersController < ApplicationController
-  def add
+  def new_and_edit
+  end
+
+  def create_and_update
   end
 end

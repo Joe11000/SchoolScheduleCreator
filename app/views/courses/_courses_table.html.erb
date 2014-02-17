@@ -11,13 +11,19 @@
     <!-- <td><%# image_tag 'delete.png', size: "50x50"%></td> -->
   <!-- </tr> -->
 <% @school.courses_pools.each do |course| %>
-  <tr>
-    <td><%= text_field_tag course.subject %></td>
-    <td><%= text_field_tag course.subject_number %></td>
-    <td><%= text_field_tag course.min_students_to_teach %></td>
-    <td><%= image_tag 'delete.png', size: "50x50"%></td>
+  <tr class="course_row">
+    <td><%= text_field_tag course.subject, nil, id: "#{course.course_number}_subject", value: course.subject, name: "courses[#{course.course_number}[subject]] "%></td>
+    <td><%= text_field_tag course.course_number, nil, id: "#{course.course_number}_course_number", value: course.course_number, name: "courses[#{course.course_number}[course_number]] " %></td>
+    <td><%= text_field_tag course.min_students_to_teach, nil, id: "#{course.course_number}_min_students_to_teach", name: "courses[#{course.course_number}[min_students_to_teach]] ", value: course.min_students_to_teach %></td>
+    <td><%= image_tag 'delete.png', class: 'delete_img', size: "50x50" %></td>
   </tr>
 <% end %>
 </table>
 
 <h3 style="color:red;">_courses_table partial </h3>
+
+<!--
+ type='text' value='" + a + "'></td>" +
+                "<td><input name='courses[" + id + "[course_number]]' type='text' value='" + b + "'></td>" +
+                "<td><input name='courses[" + id + "[min_students_to_teach]]'
+ -->

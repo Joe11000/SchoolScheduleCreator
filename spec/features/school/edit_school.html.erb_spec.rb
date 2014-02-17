@@ -33,7 +33,7 @@ describe "visitor creating school" do
       find_field("school_location").visible?
       find_field("school_bio").visible?
 
-      find_button("edit").visible?
+      find_button("update").visible?
   end
 
   it "form has previous content" do
@@ -64,7 +64,7 @@ describe "visitor creating school" do
         fill_in "school_location",              with: s_location
         fill_in "school_bio",                   with: s_bio
 
-        find_button("edit").click
+        click_button "update"
     }.to change{School.count}.by(0)
 
     s = School.last

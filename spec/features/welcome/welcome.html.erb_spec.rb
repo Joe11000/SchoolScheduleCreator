@@ -11,11 +11,11 @@ describe "welcome page" do
     end
 
     it "can see link to create new school" do
-    	find_by_id('new_school').visible?
+    	find_link('New School').visible?
     end
 
     it "can be taken to page to create new school" do
-    	 find_by_id('new_school').click
+    	 click_link("New School")
     	 current_path.should eq new_school_path
     end
 

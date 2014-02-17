@@ -43,7 +43,7 @@ describe "visitor creating school" do
 
       click_button("next")
     end
-    current_path.should eq new_school_course_path(School.last)
+    current_path.should eq courses_path
     School.try(:last).try(:destroy)
   end
 

@@ -1,34 +1,55 @@
 $(function()
 {
-  my_hash = {'key': "value"};
-	$('#add_course_button').click(function(e){ e.preventDefault(); addCourseToList(); clearInput()});
-	// $("#next_button").click(function(e){ e.preventDefault(); postWithCoursesList()});
 
-	function addCourseToList()
+	// activates any delete images on screen already
+	$(".delete_img").each(function(index, element)
+  {
+    $(this).click(function(e){e.preventDefault();$(this).parents(".course_row").remove();})
+  });
+
+
+  // add button listener to insert new course into table with all required listeners
+	$('#add_course_button').click(function(e){ e.preventDefault(); addCourseToList(); clearInput(); checkButtonDisable();});
+
+  // disable button if no courses in table
+  checkButtonDisable();
+
+  // add listeneres to delete picture at the end of each course row
+  $("#courses_table .delete_img").click(function(){$(this).parents(".course_row").remove(); checkButtonDisable();})
+                                 .hover(function(){$(this).css('cursor', 'pointer');})
+
+  function addCourseToList()
 	{
-		a = $('#subject')[0].value
-    b = $('#course_number')[0].value
-    c = $('#min_students_to_teach')[0].value
+		c_subject               = $('#subject')[0].value;
+    c_course_number         = $('#course_number')[0].value;
+    c_min_students_to_teach = $('#min_students_to_teach')[0].value;
 
-    if(a == "" || b == "" || c == "")
+    if(c_subject == "" || c_course_number == "" || c_min_students_to_teach == "")
     	return;
 
-    id = b.split(' ')[0];
 
-    string = "<tr>" +
-                "<td><input name='courses[" + id + "[subject]]' type='text' value='" + a + "'></td>" +
-                "<td><input name='courses[" + id + "[course_number]]' type='text' value='" + b + "'></td>" +
-                "<td><input name='courses[" + id + "[min_students_to_teach]]' type='text' value='" + c + "'></td>" +
-                "<td><img alt='Delete' height='50' width='50' src='/assets/delete.png' ></td>" +
+    c_course_number = c_course_number.replace(/[, ]/g, "_");
+
+
+    string = "<tr class='course_row'>" +
+                "<td><input name='courses[" + c_course_number + "[subject]]' type='text' value='" + c_subject + "'></td>" +
+                "<td><input name='courses[" + c_course_number + "[course_number]]' type='text' value='" + c_course_number + "'></td>" +
+                "<td><input name='courses[" + c_course_number + "[min_students_to_teach]]' type='text' value='" + c_min_students_to_teach + "'></td>" +
+                "<td><img alt='delete_img' class='delete_img' height='50' width='50' src='/assets/delete.png' ></td>" +
              "</tr>"
 
     $("#courses_table").append(string);
+    $("#courses_table tr:last .delete_img").click(function(){$(this).parents(".course_row").remove(); checkButtonDisable();})
+                                           .hover(function(){$(this).css('cursor', 'pointer');})
 	}
 
-	function deleteCourse()
+
+	function checkButtonDisable()
 	{
-		alert("working so far")
-		$(this).getParent();
+		if($('.course_row').toArray().length == 0)
+      $('#save_course_changes_button').attr("disabled", "disabled");
+    else
+      $('#save_course_changes_button').removeAttr("disabled");
 	}
 
 	function clearInput()
@@ -38,25 +59,6 @@ $(function()
 		 $('#min_students_to_teach')[0].value = "";
 	}
 
-	function convertListToJSON()
-	{
-		// courses_hash = new Array()
-
-     $("#courses_table tr").each(function(index,element){
-       if(index == 0); "hey"
-       	 // continue;
-
-       // courses_hash[:]
-
-     })
-	}
-
-	function postWithCoursesList()
-	{
-		// $.post( "ajax/test.html", convertListToJSON());
-
 		// $.post( <%= escape_javascript(school_courses_path(@school)) %>, {"MAT_101": ["math", "MAT_101", 14], "eng_216": ["english", "eng_216", 15]});
 		// $.post( "/schools/10/courses", {"MAT_101": ["math", "MAT_101", 14], "eng_216": ["english", "eng_216", 15]});
-	}
-
 });

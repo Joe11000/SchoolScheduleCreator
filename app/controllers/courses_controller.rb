@@ -1,50 +1,72 @@
 class CoursesController < ApplicationController
-   layout "new_courses_layout"
+  layout "new_courses_layout"
 
-  def new
-    @school = current_school
-  end
-
-  def create
+  def new_and_edit
     debugger
+    # debugger
 
     if current_school.courses_pools.count == 0
-      params[:courses].values.each do |course|
-        debugger
-        caw = CoursesPool.new(course)
-        debugger
-        current_school.courses_pools.create(course)
-        debugger
-      end
+      @next_or_update = "next"
+      @school = current_school
     else
-      params[:courses].values.each do |course|
-        debugger
-        c = CoursesPool.find_by_course_number(course[:course_number])
+      @next_or_update = "update"
+      @school = School.joins(:courses_pools).where("schools.id = ?", current_school.id).first
+    end
+  end
 
-        if c
-          c.update_attributes(course)
-        else
-          current_school.courses_pools.create(course)
-        end
+  def create_and_update
+    debugger
+    debugger
+    params[:courses].values.each do |course| # make sure course_numbers are saved in the correct format
+    debugger
+      correct_format = course["course_number"].gsub(/[, ]/, "")
+    debugger
+      if correct_format != course["course_number"]
+    debugger
+        course["course_number"] = correct_format
       end
     end
 
     debugger
-    redirect_to new_school_teacher_path(current_school.id)
-  end
+    if current_school.courses_pools.count == 0 # schools first school creation
+      params[:courses].values.each do |course|
+        debugger
+        current_school.courses_pools.create(course)
+        debugger
+      end
+      redirect_to teachers_path and return
+    else
+    debugger
+      if not params[:courses]       # if updated courses to remove them all
+       debugger
+       debugger
+        current_school.courses_pools.destroy_all
+        flash[:notice] = "At least one course required."
+        flash[:color]  = "Error"
+        redirect_to courses_path and return
+      else
+                                     # school updating courses
+      params[:courses].values.each do |course|
+        c = current_school.courses_pools.find_by_course_number(course[:course_number])
+        debugger
 
-  def edit
-  	# debugger
-  	@school = School.includes(:courses_pools).where("schools.id = ?", current_school.id)
-    # debugger
-    # ''
-  end
+        if c  # course_number
+          debugger
+          c.update_attributes(course)
+        else
+          debugger
+          current_school.courses_pools.create(course)
+        end
+      end
 
-  def update
-    # if update set of courses doesn't contain all from School has in past. Then save and delete time
+      redirect_to school_path and return
+    end
   end
 
   def show
+    debugger
+    debugger
   end
 
+  end
 end

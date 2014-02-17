@@ -18,6 +18,10 @@ describe "school adding courses" do
     end
 	end
 
+  it "should have next button disabled" do
+
+  end
+
   it "can see 'Add Courses' somewhere on screen" do
   	page.should have_content("Add Courses")
   end
@@ -28,111 +32,117 @@ describe "school adding courses" do
     find_field("min_students_to_teach").visible?
     find_button("add").visible?
     find_button("next").visible?
+    find_button("next").disabled?
   end
 
   it "have no existing courses", js: true do
-  	expect(page.driver.browser.evaluate_script("$('tr').toArray().length ")).to eq 1
+  	expect(page.driver.browser.evaluate_script("$('.course_row').toArray().length ")).to eq 0
   end
 
   it "can add a course", js: true do
+    c_subject               = "biology"
+    c_course_number         = "bio_101"
+    c_min_students_to_teach = 10
+
     expect{
-      fill_in "subject", with: "biology"
-      fill_in "course_number", with: "bio_101"
-      fill_in "min_students_to_teach", with: 10
+      fill_in "subject", with: c_subject
+      fill_in "course_number", with: c_course_number
+      fill_in "min_students_to_teach", with: c_min_students_to_teach
 
-      save_and_open_page
+      # save_and_open_page
       click_button "add"
-    }.to change{page.driver.browser.evaluate_script("$('tr').toArray().length")}.from(1).to(2)
+    }.to change{page.driver.browser.evaluate_script("$('.course_row').toArray().length")}.from(0).to(1)
 
+    # Test the first class added
+    page.driver.browser.evaluate_script("$('.course_row:eq(0) td:eq(0) input').val()").should eq c_subject
+    page.driver.browser.evaluate_script("$('.course_row:eq(0) td:eq(1) input').val()").should eq c_course_number
+    page.driver.browser.evaluate_script("$('.course_row:eq(0) td:eq(2) input').val()").should eq c_min_students_to_teach.to_s
+    page.driver.browser.evaluate_script("$('.course_row:eq(0) td:eq(3) img')").should be_true
   end
 
-  it "can add multiple courses", js: true do
-    expect{
-      fill_in "subject", with: "biology"
-      fill_in "course_number", with: "bio_101"
-      fill_in "min_students_to_teach", with: 10
-      click_button "add"
+  it "next butten enabled after adding course", js: true do
+    c_subject               = "biology"
+    c_course_number         = "bio_101"
+    c_min_students_to_teach = 10
 
-      fill_in "subject", with: "Algebra"
-      fill_in "course_number", with: "MAT_231"
-      fill_in "min_students_to_teach", with: 7
-      click_button "add"
-    }.to change{page.driver.browser.evaluate_script("$('tr').toArray().length")}.from(1).to(3)
+    fill_in "subject", with: c_subject
+    fill_in "course_number", with: c_course_number
+    fill_in "min_students_to_teach", with: c_min_students_to_teach
 
-  end
-
-  it "can submit multiple courses", js: true do
-
-    fill_in "subject", with: "biology"
-    fill_in "course_number", with: "BIO_101"
-    fill_in "min_students_to_teach", with: 10
+    # save_and_open_page
     click_button "add"
 
-    fill_in "subject", with: "algebra"
-    fill_in "course_number", with: "MAT_231"
-    fill_in "min_students_to_teach", with: 7
+    expect(find_button("next").disabled?).to be_false
+  end
+
+
+  it "can add multiple courses", js: true do
+    c_subject               = "Algebra"
+    c_course_number         = "MAT_231"
+    c_min_students_to_teach = 7
+
+    expect{
+      fill_in "subject", with: "biology"
+      fill_in "course_number", with: "bio_101"
+      fill_in "min_students_to_teach", with: 10
+      click_button "add"
+
+      fill_in "subject", with: c_subject
+      fill_in "course_number", with: c_course_number
+      fill_in "min_students_to_teach", with: c_min_students_to_teach
+      click_button "add"
+      # save_and_open_page
+    }.to change{page.driver.browser.evaluate_script("$('.course_row').toArray().length")}.from(0).to(2)
+
+    # Test the second class added
+    page.driver.browser.evaluate_script("$('.course_row:eq(1) td:eq(0) input').val()").should eq c_subject
+    page.driver.browser.evaluate_script("$('.course_row:eq(1) td:eq(1) input').val()").should eq c_course_number
+    page.driver.browser.evaluate_script("$('.course_row:eq(1) td:eq(2) input').val()").should eq c_min_students_to_teach.to_s
+    page.driver.browser.evaluate_script("$('.course_row:eq(1) td:eq(3) .delete_img')").should be_true
+  end
+
+  xit "can submit multiple courses", js: true do
+    c1_subject               = "biology"
+    c1_course_number         = "bio_101"
+    c1_min_students_to_teach = 10
+    c2_subject               = "Algebra"
+    c2_course_number         = "MAT_231"
+    c2_min_students_to_teach = 7
+
+    fill_in "subject", with: c1_subject
+    fill_in "course_number", with: c1_course_number
+    fill_in "min_students_to_teach", with: c1_min_students_to_teach
+    click_button "add"
+
+    fill_in "subject", with: c2_subject
+    fill_in "course_number", with: c2_course_number
+    fill_in "min_students_to_teach", with: c2_min_students_to_teach
     click_button "add"
 
     click_button "next"
     @current_school = School.last
 
-    debugger
-    expect(@current_school.courses_pools.size).to eq 2
-    class_1 = @current_school.courses_pools.find_by_subject("biology")
-    debugger
-    expect(class_1.course_number).to eq "BIO_101"
-    expect(class_1.min_students_to_teach).to eq 10
+    # save_and_open_page
 
     debugger
-    class_2 = @current_school.courses_pools.find_by_subject("algebra")
-    expect(class_2.course_number).to eq "MAT_231"
+    expect(@current_school.courses_pools.size).to eq 2
+    class_1 = @current_school.courses_pools.find_by_subject(c1_subject)
     debugger
-    expect(class_2.min_students_to_teach).to eq 7
+    expect(class_1.course_number).to eq c1_course_number
+    expect(class_1.min_students_to_teach).to eq c1_min_students_to_teach
+
+    debugger
+    class_2 = @current_school.courses_pools.find_by_subject(c2_subject)
+    expect(class_2.course_number).to eq c2_course_number
+    debugger
+    expect(class_2.min_students_to_teach).to eq c2_min_students_to_teach
 
     School.last.destroy
     CoursesPool.last(2).destroy
-
-
   end
-
-
-
-
-# 	it "can create one class" do
-# 		# fill_in "subject",               with: "Advanced Algebra"
-# 		# fill_in "course_number",         with: "Math_115"
-# 		# fill_in "min_students_to_teach", with: 23
-# 		# find_button("next").click
-# 		# save_and_open_page
-# 		# within "" do
-
-# 		# end
-# 	end
-
-# 	xit "can create multiple classes" do
-# 		fill_in "subject",               with: "Biology"
-# 		fill_in "course_number",         with: "BIO_185"
-# 		fill_in "min_students_to_teach", with: 11
-# 		click_button "next"
-
-# 		fill_in "subject",               with: "Biology"
-# 		fill_in "course_number",         with: "BIO_185"
-# 		fill_in "min_students_to_teach", with: 11
-# 		click_button "next"
-# 	end
-
-# 	xit "can submit multiple classes" do
-# 		fill_in "subject",               with: "Advanced Algebra"
-# 		fill_in "course_number",         with: "Math_115"
-# 		fill_in "min_students_to_teach", with: 23
-# 		click_button "next"
-# 	end
 end
 
 # 		# save_and_open_page
-
-
-
 
 # 		# <input id="subject" name="subject" placeholder="ie Algebra" type="text" value="Advanced Algebra">
 #     # <input id="school_bio" name="school[bio]" type="text" value="We are sweet">
