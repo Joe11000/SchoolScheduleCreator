@@ -12,9 +12,9 @@
   <!-- </tr> -->
 <% @school.courses_pools.each do |course| %>
   <tr class="course_row">
-    <td><%= text_field_tag course.subject, nil, id: "#{course.course_number}_subject", value: course.subject, name: "courses[#{course.course_number}[subject]] "%></td>
-    <td><%= text_field_tag course.course_number, nil, id: "#{course.course_number}_course_number", value: course.course_number, name: "courses[#{course.course_number}[course_number]] " %></td>
-    <td><%= text_field_tag course.min_students_to_teach, nil, id: "#{course.course_number}_min_students_to_teach", name: "courses[#{course.course_number}[min_students_to_teach]] ", value: course.min_students_to_teach %></td>
+    <td><%= text_field_tag course.subject, nil, value: course.subject, class: "row_subject", id: "" %></td>
+    <td><%= text_field_tag course.course_number, nil, value: course.course_number, class: "row_course_number", id: "" %></td>
+    <td><%= text_field_tag course.min_students_to_teach, nil, value: course.min_students_to_teach, class: "row_min_students_to_teach", id:""%></td>
     <td><%= image_tag 'delete.png', class: 'delete_img', size: "50x50" %></td>
   </tr>
 <% end %>

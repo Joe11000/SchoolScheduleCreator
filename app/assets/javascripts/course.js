@@ -1,15 +1,15 @@
 $(function()
 {
 
-	// activates any delete images on screen already
-	$(".delete_img").each(function(index, element)
+  // activates any delete images on screen already
+  $(".delete_img").each(function(index, element)
   {
     $(this).click(function(e){e.preventDefault();$(this).parents(".course_row").remove();})
   });
 
 
   // add button listener to insert new course into table with all required listeners
-	$('#add_course_button').click(function(e){ e.preventDefault(); addCourseToList(); clearInput(); checkButtonDisable();});
+  $('#add_course_button').click(function(e){ e.preventDefault(); addCourseToList(); clearInput(); checkButtonDisable();});
 
   // disable button if no courses in table
   checkButtonDisable();
@@ -18,14 +18,23 @@ $(function()
   $("#courses_table .delete_img").click(function(){$(this).parents(".course_row").remove(); checkButtonDisable();})
                                  .hover(function(){$(this).css('cursor', 'pointer');})
 
+
+  $('#save_course_changes_button').click(function(e){
+    e.preventDefault();
+
+    // ajax call to save form
+		$.post("/courses", formToJSON(), function(data){alert("ajax response: + data");}, "script")//, function(r){
+
+  });
+
   function addCourseToList()
-	{
-		c_subject               = $('#subject')[0].value;
+  {
+    c_subject               = $('#subject')[0].value;
     c_course_number         = $('#course_number')[0].value;
     c_min_students_to_teach = $('#min_students_to_teach')[0].value;
 
     if(c_subject == "" || c_course_number == "" || c_min_students_to_teach == "")
-    	return;
+      return;
 
 
     c_course_number = c_course_number.replace(/[, ]/g, "_");
@@ -41,24 +50,31 @@ $(function()
     $("#courses_table").append(string);
     $("#courses_table tr:last .delete_img").click(function(){$(this).parents(".course_row").remove(); checkButtonDisable();})
                                            .hover(function(){$(this).css('cursor', 'pointer');})
-	}
+  }
 
 
-	function checkButtonDisable()
-	{
-		if($('.course_row').toArray().length == 0)
+  function checkButtonDisable()
+  {
+    if($('.course_row').toArray().length == 0)
       $('#save_course_changes_button').attr("disabled", "disabled");
     else
       $('#save_course_changes_button').removeAttr("disabled");
-	}
+  }
 
-	function clearInput()
-	{
-		 $('#subject')[0].value = "";
-		 $('#course_number')[0].value = "";
-		 $('#min_students_to_teach')[0].value = "";
-	}
+  function clearInput()
+  {
+     $('#subject')[0].value = "";
+     $('#course_number')[0].value = "";
+     $('#min_students_to_teach')[0].value = "";
+  }
 
-		// $.post( <%= escape_javascript(school_courses_path(@school)) %>, {"MAT_101": ["math", "MAT_101", 14], "eng_216": ["english", "eng_216", 15]});
+
+function formToJSON()
+{
+  var json = {"courses": { "BIO_116": { "subject": 'Science', "course_number": 'BIO_116', "min_students_to_teach": '5'}}}
+  return json
+}
+
+    // $.post( <%= escape_javascript(school_courses_path(@school)) %>, {"MAT_101": ["math", "MAT_101", 14], "eng_216": ["english", "eng_216", 15]});
 		// $.post( "/schools/10/courses", {"MAT_101": ["math", "MAT_101", 14], "eng_216": ["english", "eng_216", 15]});
 });

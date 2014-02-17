@@ -15,14 +15,25 @@ class CoursesController < ApplicationController
   end
 
   def create_and_update
-    debugger
+
+    respond_to do |format|
+      # format.html {render :new_and_edit and return}
+      format.js   { render js: "alert('it worked!');" and return}
+    end
+
+    if request.xhr?
+      debugger
+    end
+
+
+    # debugger
     debugger
     params[:courses].values.each do |course| # make sure course_numbers are saved in the correct format
-    debugger
+    # debugger
       correct_format = course["course_number"].gsub(/[, ]/, "")
-    debugger
+    # debugger
       if correct_format != course["course_number"]
-    debugger
+    # debugger
         course["course_number"] = correct_format
       end
     end

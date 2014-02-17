@@ -10,10 +10,11 @@
 <%= button_tag "add", id: "add_course_button" %>
 <br><br><br>
 
-<%= form_tag courses_path do %>
+<div id="courses_form">
   <%= render partial: "courses_table" %>
   <%= button_tag @next_or_update, id: "save_course_changes_button"  %>
-<% end %>
+</div>
+
 
 <%# Calendar maybe %>
 <%# https://github.com/robmonie/jquery-week-calendar/wiki %>
