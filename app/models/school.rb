@@ -15,4 +15,13 @@ class School < ActiveRecord::Base
                        dependent: :destroy
 
   has_secure_password
+
+  def deleteNoLongerNeededCourses(courses)
+    course_numbers_arr = []
+    courses.values.each do |course|
+      course_numbers_arr << course['course_number']
+    end
+
+    self.courses_pools.where("courses_pools.course_number NOT IN (?)", course_numbers_arr).destroy_all
+  end
 end
