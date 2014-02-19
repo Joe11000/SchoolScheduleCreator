@@ -4,12 +4,7 @@
   	<td>Course Number</td>
   	<td># Of Students</td>
   </th>
-    <!-- <tr> -->
-    <!-- <td><%# text_field_tag :course,        nil, value: "Science" %></td> -->
-    <!-- <td><%# text_field_tag :course_number, nil, value: "BIO_216" %></td> -->
-    <!-- <td><%# text_field_tag :num_students,   nil, value: 15 %></td> -->
-    <!-- <td><%# image_tag 'delete.png', size: "50x50"%></td> -->
-  <!-- </tr> -->
+
 <% @school.courses_pools.each do |course| %>
   <tr class="course_row">
     <td><%= text_field_tag course.subject, nil, value: course.subject, class: "row_subject", id: "" %></td>
@@ -21,9 +16,3 @@
 </table>
 
 <h3 style="color:red;">_courses_table partial </h3>
-
-<!--
- type='text' value='" + a + "'></td>" +
-                "<td><input name='courses[" + id + "[course_number]]' type='text' value='" + b + "'></td>" +
-                "<td><input name='courses[" + id + "[min_students_to_teach]]'
- -->

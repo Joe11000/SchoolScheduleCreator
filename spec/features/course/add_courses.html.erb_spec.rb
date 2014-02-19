@@ -91,6 +91,7 @@ describe "school adding courses" do
       fill_in "course_number", with: c_course_number
       fill_in "min_students_to_teach", with: c_min_students_to_teach
       click_button "add"
+
       # save_and_open_page
     }.to change{page.driver.browser.evaluate_script("$('.course_row').toArray().length")}.from(0).to(2)
 
@@ -120,11 +121,11 @@ describe "school adding courses" do
     click_button "add"
 
     click_button "next"
+
+    expect(page.status_code).to eq 200
     @current_school = School.last
 
-    # save_and_open_page
-
-    debugger
+    # debugger
     expect(@current_school.courses_pools.size).to eq 2
     class_1 = @current_school.courses_pools.find_by_subject(c1_subject)
     debugger

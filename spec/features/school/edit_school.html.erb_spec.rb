@@ -25,24 +25,25 @@ describe "visitor creating school" do
     @current_school.try(:destroy)
 	end
 
-  it "can see all contents to add new class" do
-  	find_by_id("school_name")
-      find_field("school_name").visible?
-      find_field("school_password").visible?
-      find_field("school_password_confirmation").visible?
-      find_field("school_location").visible?
-      find_field("school_bio").visible?
 
-      find_button("update").visible?
+
+  it "can see all contents to add new course", js: true do
+    find_field("school_name").visible?
+    find_field("school_password").visible?
+    find_field("school_password_confirmation").visible?
+    find_field("school_location").visible?
+    find_field("school_bio").visible?
+
+    find_button("update").visible?
   end
 
-  it "form has previous content" do
+  it "form has previous content", js: true do
       find_field("school_name").value()    == @current_school.name
       find_field("school_location").value() == @current_school.location
       find_field("school_bio").value()      == @current_school.bio
   end
 
-  it "can make a change on all fields" do #submit form -> taken to show page" do
+  it "can make a change on all fields", js: true do #submit form -> taken to show page" do
     fill_in "school_name",                  with: "a"
     fill_in "school_password",              with: 1234
     fill_in "school_password_confirmation", with: 1234
@@ -51,7 +52,7 @@ describe "visitor creating school" do
     # current_path.should eq "schools/#{@current_school.id}"
   end
 
-  it "has form saved to db upon submission" do
+  it "has form saved to db upon submission", js: true do
   	s_name = "-fdanikfd"
   	s_pwd = 1234
   	s_location = "9832h9pfsano---2r"
