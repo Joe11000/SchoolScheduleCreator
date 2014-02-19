@@ -44,6 +44,8 @@ describe "school editing courses" do
     click_button "add"
     click_button "next"
 
+    response.body.should have_content({ navigate: "document.location = '/teachers'" })
+
     visit courses_path
   end
 
