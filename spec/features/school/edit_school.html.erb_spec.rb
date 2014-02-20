@@ -52,7 +52,7 @@ describe "visitor creating school" do
     # current_path.should eq "schools/#{@current_school.id}"
   end
 
-  it "has form saved to db upon submission", js: true do
+  xit "has form saved to db upon submission", js: true do
   	s_name = "-fdanikfd"
   	s_pwd = 1234
   	s_location = "9832h9pfsano---2r"
