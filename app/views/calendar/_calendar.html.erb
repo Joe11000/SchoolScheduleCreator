@@ -1,0 +1,276 @@
+<div id='outer_calendar_div'>
+   <div id="calendar"></div>
+</div>
+
+
+<!-- Read to Use
+
+      locals parameters required -> (a)  events: { events: [ {eventData}, ..., {}]
+                                    (b)
+
+      eventData ie {
+                    'id':    1,
+                    'start': new Date(year, month, day, 12, 13),
+                    'end':   new Date(year, month, day, 13, 34),
+                    'title': 'Lunch with Mike'
+                    },
+-->
+
+<div id='outer_calendar_div'>
+   <div id="calendar"></div>
+</div>
+
+
+
+
+
+
+
+<!-- default data unless events are passed in -->
+<script type="text/javascript">
+  var year = new Date().getFullYear();
+  var month = new Date().getMonth();
+  var day = new Date().getDate();
+
+  var eventData = {
+    events : [
+       {'id':1, 'start': new Date(year, month, day, 12, 13), 'end': new Date(year, month, day, 13, 34),'title':'Lunch with Mike'},
+       {'id':2, 'start': new Date(year, month, day, 14), 'end': new Date(year, month, day, 14, 45),'title':'Dev Meeting'},
+       {'id':3, 'start': new Date(year, month, day + 1, 18), 'end': new Date(year, month, day + 1, 18, 45),'title':'Hair cut'},
+       {'id':4, 'start': new Date(year, month, day - 1, 8), 'end': new Date(year, month, day - 1, 9, 30),'title':'Team breakfast'},
+       {'id':5, 'start': new Date(year, month, day + 1, 14), 'end': new Date(year, month, day + 1, 16),'title':'Product showcase'},
+       {'id':5, 'start': new Date(year, month, day + 1, 15), 'end': new Date(year, month, day + 1, 17),'title':'Overlay event'}
+    ]
+  };
+
+  // input ie (1393533800000, 1393533899999, 55)
+  // output Calendar Event
+  var getEventDataFromJSTimeStamp = function(js_timestamp_from, js_timestamp_to, title)
+  {
+    var from_date = +new Date(js_timestamp_from)
+    var from_year  = from_date.getFullYear();
+    var from_month = from_date.getMonth();
+    var from_day   = from_date.getDate();
+
+    var to_date = +new Date(js_timestamp_to)
+    var to_year  = to_date.getFullYear();
+    var to_month = to_date.getMonth();
+    var to_day   = to_date.getDate();
+
+    return({
+              'id':    num_of_events_on_calendar++,
+              'start': new Date(year, month, day, 12, 13),
+              'end':   new Date(year, month, day, 13, 34),
+              'title': title
+           });
+  }
+</script>
+
+
+<!-- // required files -->
+<%= javascript_include_tag "calendar/jquery-1.4.4.min.js" %>
+<%= javascript_include_tag "calendar/jquery-ui-1.8.11.custom.min.js" %>
+<%= javascript_include_tag "calendar/date.js" %>
+<%= javascript_include_tag "calendar/jquery.weekcalendar.js" %>
+
+<script type='text/javascript'>
+
+   var loadCalendar = function(eventData)
+   {
+    $('#calendar').weekCalendar({
+          data: eventData,
+
+          timeslotsPerHour: 6,
+          allowCalEventOverlap: true,
+          overlapEventsSeparate: true,
+          totalEventsWidthPercentInOneColumn : 95,
+
+          height: function($calendar) {
+            return $(window).height() - $('h1').outerHeight(true);
+          },
+          eventRender: function(calEvent, $event) {
+            if (calEvent.end.getTime() < new Date().getTime()) {
+              $event.css('backgroundColor', '#aaa');
+              $event.find('.time').css({
+                backgroundColor: '#999',
+                border:'1px solid #888'
+              });
+            }
+          },
+          eventNew: function(calEvent, $event) {
+          displayMessage('<strong>Added event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+          alert('You\'ve added a new event. You would capture this event, add the logic for creating a new event with your own fields, data and whatever backend persistence you require.');
+          },
+          eventDrop: function(calEvent, $event) {
+            displayMessage('<strong>Moved Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+          },
+          eventResize: function(calEvent, $event) {
+            displayMessage('<strong>Resized Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+          },
+          eventClick: function(calEvent, $event) {
+            displayMessage('<strong>Clicked Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+          },
+          eventMouseover: function(calEvent, $event) {
+            displayMessage('<strong>Mouseover Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+          },
+          eventMouseout: function(calEvent, $event) {
+            displayMessage('<strong>Mouseout Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+          },
+          noEvents: function() {
+            displayMessage('There are no events for this week');
+          }
+    });
+   } // function to load Calendar
+</script>
+
+
+<script type="text/javascript"> // After Page Loads
+  (function(){
+     var num_of_events_on_calendar = 0;
+     loadCalendar(data)
+
+      // function displayMessage(message) {
+      //   $('#message').html(message).fadeIn();
+      // }
+
+      // $('<div id="message" class="ui-corner-all"></div>').prependTo($('body'));
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+  $(function()
+  {
+     var teachers_schedules_json; // not sure if i need to hold onto the json
+
+
+
+    $.get('/teachers/calendars', function(calendar_info_hash) {
+       teachers_schedules_json = calendar_info_hash
+
+       for(var i in calendar_info_hash['teachers_list'])
+       {
+         $('#side_bar').append("<label class='side_bar_item'>" + calendar_info_hash['teachers_list'][i] + "</label>")
+       }
+    },"json")
+
+  // fill in teachers that exist already
+  // $('#outer_calendar_div').append("<div id='teacher_list'> <label class='side_bar_item'>Add New</label>  </div>")
+
+    $('add_teacher_button').click(function(){
+      n = $('#teacher_name')
+
+      $('#side_bar').append("<label class='side_bar_item'>" + teacher_name + "</label>")
+
+    })
+
+
+
+
+
+    // add button listener to insert new course into table with all required listeners
+    // $('#add__button').click(function(e){ e.preventDefault(); addCourseToList(); clearInput(); checkButtonDisable();});
+
+    // disable button if no courses in table
+    // checkButtonDisable();
+
+    // // add listeneres to delete picture at the end of each course row
+    // $("#courses_table .delete_img").click(function(){$(this).parents(".course_row").remove(); checkButtonDisable();})
+    //                                .hover(function(){$(this).css('cursor', 'pointer');})
+
+
+    // $('#save_course_changes_button').click(function(e){
+    //   e.preventDefault();
+
+    //   $.ajaxSetup({
+    //     headers: {
+    //     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    //   });
+
+    //   // this is the ajax call to save form data in server db
+    //   $.post("/courses", formToJSON(), function(response){
+    //      if(response.navigate != undefined)
+    //         eval(response.navigate);
+    //      else
+    //       console.log(response.notice)
+    //    }, "json")
+    // });
+
+    // function addCourseToList()
+    // {
+    //   c_subject               = $('#subject')[0].value;
+    //   c_course_number         = $('#course_number')[0].value;
+    //   c_min_students_to_teach = $('#min_students_to_teach')[0].value;
+
+    //   if(c_subject == "" || c_course_number == "" || c_min_students_to_teach == "")
+    //     return;
+
+
+    //   c_course_number = c_course_number.replace(/[, -]/g, "_");
+
+    //   string = "<tr class='course_row'>" +
+    //               "<td><input class='row_subject' type='text' value='" + c_subject + "'></td>" +
+    //               "<td><input class='row_course_number' type='text' value='" + c_course_number + "'></td>" +
+    //               "<td><input class='row_min_students_to_teach' type='text' value='" + c_min_students_to_teach + "'></td>" +
+    //               "<td><img alt='delete_img' class='delete_img' height='50' width='50' src='/assets/delete.png' ></td>" +
+    //            "</tr>"
+
+    //   $("#courses_table").append(string);
+    //   $("#courses_table tr:last .delete_img").click(function(){$(this).parents(".course_row").remove(); checkButtonDisable();})
+    //                                          .hover(function(){$(this).css('cursor', 'pointer');})
+    // }
+
+
+   //  function checkButtonDisable()
+   //  {
+   //    if($('.course_row').toArray().length == 0)
+   //      $('#save_course_changes_button').attr("disabled", "disabled");
+   //    else
+   //      $('#save_course_changes_button').removeAttr("disabled");
+   //  }
+
+   //  function clearInput()
+   //  {
+   //     $('#subject')[0].value = "";
+   //     $('#course_number')[0].value = "";
+   //     $('#min_students_to_teach')[0].value = "";
+   //  }
+
+   //  function formToJSON()
+   //  {
+   //  var json = {courses: {}}
+
+   // $(".course_row").each(function(index, element)  {
+   //    row_subject = $(this).find('.row_subject')[0].value
+   //    row_course_number = $(this).find('.row_course_number')[0].value
+   //    row_min_students_to_teach = $(this).find('.row_min_students_to_teach')[0].value
+
+   //    json['courses'][row_course_number] = {
+   //                                           subject: row_subject,
+   //                                           course_number: row_course_number,
+   //                                           min_students_to_teach: row_min_students_to_teach
+   //                                         }
+   //  });
+   //
+    // return json
+    // }
+  });
+</script>
+
+

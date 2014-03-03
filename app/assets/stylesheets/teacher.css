@@ -1,0 +1,18 @@
+/*// Place all the styles related to the Teacher controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+*/
+
+#main_body {
+  width:85%;
+  float:right;
+}
+
+div#calendar {
+   /*height: 150%;*/
+   margin-left: auto;
+   margin: auto;
+   border: 3px ridge lightblue;
+   border-radius: 10px;
+   float:right;
+}

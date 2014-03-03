@@ -1,0 +1,32 @@
+#side_bar {
+  width: 15%;
+  background-color: lightgreen;
+  /*max-width: 12%;*/
+  height:100%;
+
+  position: fixed;
+  left:0px;
+  top:0px;
+  bottom:0px;
+  overflow-y: scroll;
+
+}
+.side_bar_item {
+  display: block;
+  color:   black;
+  margin: auto;
+  min-height: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 2px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+  width:90%;
+  text-align: center;
+  background-color: white;
+}
+.side_bar_item.selected {
+  background-color: lightblue;
+/*  background-color: purple;
+  border: 2px double green;*/
+}

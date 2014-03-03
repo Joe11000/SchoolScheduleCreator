@@ -1,0 +1,13 @@
+<!--
+  This partial needs :
+        1) locals: { side_bar_list_items_arr: ["str_one", "str_two", "str_three"]}
+-->
+
+<div id="side_bar">
+  <% side_bar_list_items_arr.each do |item| %>
+    <label class="side_bar_item"> <%= item %></label>
+  <% end %>
+</div>
+
+<%= stylesheet_link_tag "side_bar/side_bar.css" %>
+<%= javascript_include_tag "side_bar/side_bar.js" %>

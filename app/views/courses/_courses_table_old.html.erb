@@ -1,0 +1,22 @@
+<script type="text/javascript" src="/path/to/jquery-latest.js"></script>
+
+  <script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script>
+
+
+<table id="courses_table" class="tablesorter">
+  <th>
+  	<td>Course Name</td>
+  	<td>Course Number</td>
+  	<td># Of Students</td>
+  </th>
+<% @school.courses_pools.each do |course| %>
+  <tr>
+    <td><%= course.subject %></td>
+    <td><%= course.subject_number %></td>
+    <td><%= course.min_students_to_teach %></td>
+    <td><%= image_tag 'delete.png', size: "50x50"%></td>
+  </tr>
+<% end %>
+</table>
+
+<h3 style="color:red;">_courses_table partial </h3>

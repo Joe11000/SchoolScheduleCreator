@@ -1,0 +1,18 @@
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<%= link_to "New School", new_school_path, id: "new_school" %>
+
+<%= form_tag root_url, id: "login_form" do  %>
+
+  <%=  label_tag :name, "School Name"%>
+  <%=  text_field_tag 'name' %>
+  <br>
+  <%=  label_tag :password %>
+  <br>
+  <%=  password_field_tag 'password' %>
+  <br>
+  <%= button_tag "login", id: "login_id",name: "Login" %>
+
+<% end %>

@@ -1,0 +1,23 @@
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+
+<%= form_for @school, url: create_school_path do |f| %>
+  School Name: <%= f.text_field :name, value:(@school.name || "School_#{School.count + 1}") %>
+  <br>
+  <br>
+  Password: <%= f.text_field :password, value:(@school.new_record? ? 1234 : "") %>
+  <br>
+  <br>
+  Password Confirmation: <%= f.text_field :password_confirmation, value:(@school.new_record? ? 1234 : "") %>
+  <br>
+  <br>
+  Location: <%= f.text_field :location, value:(@school.location || "#{School.count + 1}.#{rand(888)} #{School.count + 1}.#{rand(888)}") %>
+  <br>
+  <br>
+  Fun Fact About Your School: <%= f.text_field :bio, value:(@school.name || "School_#{School.count + 1}") %>
+  <br>
+  <br>
+  <%= f.submit "next" %>
+<% end %>

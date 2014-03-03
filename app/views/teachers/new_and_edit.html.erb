@@ -1,0 +1,15 @@
+<div>
+
+	<%= render partial: "side_bar/side_bar.html.erb", locals: {side_bar_list_items_arr: ["One", "Two", "Three", "Four"]} %>
+
+	<div id="main_body">
+		<h1 class="normal">Teachers</h1>
+
+	  <%= text_field_tag "name", nil,  id: "item_str", placeholder: "Last, First" %>
+	  <%= button_tag "add", id: "add_side_bar_item_button" %>
+
+		<%=  render partial: 'calendar/calendar.html.erb'%>
+
+		<%= button_tag @next_or_update, id: "next_button"  %>
+	</div>
+</div>

@@ -1,0 +1,18 @@
+<table id="courses_table" class="tablesorter">
+  <th>
+  	<td>Course Name</td>
+  	<td>Course Number</td>
+  	<td># Of Students</td>
+  </th>
+
+<% @school.courses_pools.each do |course| %>
+  <tr class="course_row">
+    <td><%= text_field_tag course.subject, nil, value: course.subject, class: "row_subject", id: "" %></td>
+    <td><%= text_field_tag course.course_number, nil, value: course.course_number, class: "row_course_number", id: "" %></td>
+    <td><%= text_field_tag course.min_students_to_teach, nil, value: course.min_students_to_teach, class: "row_min_students_to_teach", id:""%></td>
+    <td><%= image_tag 'delete.png', class: 'delete_img', size: "50x50" %></td>
+  </tr>
+<% end %>
+</table>
+
+<h3 style="color:red;">_courses_table partial </h3>

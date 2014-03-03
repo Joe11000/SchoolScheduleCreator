@@ -1,0 +1,23 @@
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+
+<%= form_for @school,  url: update_school_path, method: :post do |f| %>
+  School Name: <%= f.text_field :name, value:@school.name  %>
+  <br>
+  <br>
+  Password: <%= f.text_field :password %>
+  <br>
+  <br>
+  Password Confirmation: <%= f.text_field :password_confirmation %>
+  <br>
+  <br>
+  Location: <%= f.text_field :location, value: @school.location %>
+  <br>
+  <br>
+  Fun Fact About Your School: <%= f.text_field :bio, value: @school.name %>
+  <br>
+  <br>
+  <%= f.submit "update" %>
+<% end %>
