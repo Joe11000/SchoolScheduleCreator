@@ -6,6 +6,7 @@ gem 'rails', '4.0.2'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+# gem "active_support"
 # gem "haml", "~> 4.0.5"
 # gem "haml-rails"
 
@@ -38,10 +39,12 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
 
+
 ## I ADDED THESE BELOW
 
 gem "protected_attributes"
-  gem "capybara-webkit"
+  # gem "capybara-webkit"
+  gem "poltergeist"
 
 group :development, :test do
   gem 'rspec-mocks'
@@ -54,6 +57,7 @@ group :development, :test do
   gem 'database_cleaner'
 end
   gem 'debugger'
+
 
 group :development do
   gem 'better_errors'
