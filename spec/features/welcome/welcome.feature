@@ -1,94 +1,21 @@
-# require 'spec_helper'
-# require 'capybara/dsl'
-# include Capybara::DSL
-
-
-# describe "welcome page" do
-# 	describe "visitor" do
-# 	  before(:each) {visit root_path}
-
-#     it "can see page" do
-#       current_path.should eq root_path
-#     end
-
-#     it "can see link to create new school" do
-#     	find_link('New School').visible?
-#     end
-
-#     it "can be taken to page to create new school" do
-#     	 click_link("New School")
-#     	 current_path.should eq new_school_path
-#     end
-
-#     it "can see form on screen" do
-#       find_by_id('login_form').visible?
-#     end
-
-#     it "can see all contents in form" do
-#       within("#login_form") do
-#         find_field('name').visible?
-#         find_field('password').visible?
-#         find_button('login').visible?
-#       end
-#     end
-
-#     it "can login if a current school" do
-#       school = FactoryGirl.create(:school)
-
-#       within("#login_form") do
-#         fill_in :name,     with: school.name
-#         fill_in :password, with: 1234
-
-#         click_button('login')
-#       end
-#       current_path.should eq school_path(school)
-
-#       school.try(:destroy)
-#     end
-
-#     it "sees an error if login incorrect" do
-#     	within("#login_form") do
-#         fill_in :name,     with:"-=Not_REAL423xs?^?"
-#         fill_in :password, with: "1d3"
-#       end
-
-#       click_button('login')
-#       current_path.should eq root_path
-#       page.should have_content("Unsuccessful Log In")
-#     end
-#   end
-# end
-
-@welcome 
 Feature: Welcome
-  # As a Splat user,
-  # I want my dashboard to be functional. This includes:
-  #   - Create a Subscription list*
-  # - Create an Incentive campaign*
-  # - Create an Info campaign*
-  # - Create a Last Played campaign*
-  # - Create a Request campaign*
-  # - Create a Text-2-Win campaign*
-  # - Create a Trivia campaign*
-  # - Create a Vote campaign*
 
-  # * assume being directed to the working 'create' page is sufficient for success. These scenarios do not actually create campaigns (as that is tested in the respective 'Create' feature files.)
-
-  Background:
-    Given I am on the home page
-
-#     it "can see link to create new school" do
-#       find_link('New School').visible?
-#     end
-
-  Scenerio: New School Link On Screen
-    Then I can see the link to create new school
-
-  # Scenerio: The login form is on the screen
-  #   Then I can see school login form
-   
+Background:
+  Given I visit root
 
 
+  Scenario: Am I home
+    When I do nothing else
+    Then I am on root
+
+  Scenario: new school
+    When I click the new_school link
+    Then I am on the new school page
+
+
+  @selenium
+  Scenario: log in
+    When I log in as an existing school. I am now on schools page
 
 
 

@@ -2,29 +2,51 @@
 # require 'capybara/dsl'
 # include Capybara::DSL
 
-steps_for :welcome do
 
-	step "I am on the home page" do
+   step "I do nothing else" do
+
+   end
+
+	step "I visit root" do
 		visit root_path
 	end
 
-	step "I can see the link to create new school" do
+	step "I am on root" do
 	  current_path.should eq root_path
 	end
 
-	# step "I can see school login form" do
-      
-	# end
+    step "I click the new_school link" do
+      find(:css, "#new_school").click
+    end
 
+    step "I log in as an existing school. I am now on schools page" do
+      school = FactoryGirl.create(:school)
 
-end
+      within(:css, "#login_form") do
+        fill_in :name,     with: school.name
+        fill_in :password, with: 1234
+        # save_and_open_page
+        # debugger
+      end
+      click_button('login')
+      # save_and_open_page
+      # debugger
+      # response.should redirect_to school_path
 
+      # page should not contain Unsucessful login
+	end
 
+    step "I am on the new school page" do
+      current_path.should eq new_school_path
+    end
 
+# find(:css, "#login_form name")
+#
 
-
-
-
+      # within(:css, "#login_form") {find_field('name')}
+      #    within(:css, "#login_form") { find_field('password')}
+      #
+      # end
 
 # describe "welcome page" do
 # 	describe "visitor" do

@@ -41,7 +41,8 @@ gem 'bcrypt-ruby'
 ## I ADDED THESE BELOW
 
 gem "protected_attributes"
-  gem "capybara-webkit"
+  # gem "capybara-webkit"
+  gem 'poltergeist'
 
 group :development, :test do
   gem 'rspec-mocks'
@@ -61,6 +62,8 @@ end
 
 group :test do
 	gem 'launchy'
+  gem 'turnip'
+  gem 'selenium-webdriver'
 
 end
 
