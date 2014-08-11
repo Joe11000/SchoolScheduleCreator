@@ -12,22 +12,23 @@ class Teacher < ActiveRecord::Base
 
   has_many :courses_pools, through: :teacher_course_possibilities
 
+
   has_many :teacher_course_possibilities, inverse_of: :teacher,
                                           dependent:  :destroy
 
+
   has_many :courses_could_teach, through: :teacher_course_possibilities,
                                  source:  :courses_pool
-
   has_many :courses_teaching, -> { where('teacher_course_possibilities.scheduled_course = ? ', true) },
                                  through: :teacher_course_possibilities,
                                  source:  :courses_pool
 
 
-  def add_class_to_teach(class_id = 1)
-    t =  TeacherCoursePossibility.joins(:teacher, :courses_pool).where("teachers.id = #{id} AND courses_pools.id = #{class_id}")
+  def add_course_to_teach(course_id = 1)
+    t =  TeacherCoursePossibility.joins(:teacher, :courses_pool).where("teachers.id = #{id} AND courses_pools.id = #{course_id}")
 
     if t.empty?
-      "Teacher isn't able to teach this class"
+      "Teacher isn't able to teach this course"
 
     elsif t.first.scheduled_course
       "Teacher #{name} is already teaching this course"
@@ -38,16 +39,16 @@ class Teacher < ActiveRecord::Base
     end
   end
 
-  # def add_class_could_teach(course_id_that_exists)
+  # def add_course_could_teach(course_id_that_exists)
   #    courses_pools << CoursePoolscourse_id_that_exists
   # end
 
 
-  def available?(start_datetime, end_datetime)
+  def available_at_time?(start_datetime, end_datetime)
     rand(2) == 1 ? "yes" : "no"
   end
 
-  def next_available?
+  def next_available_time?
     [Time.now, 74]  # returns next available time and how long much longer they are available for
   end
 end

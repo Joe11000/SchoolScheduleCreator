@@ -39,35 +39,37 @@ end
 gem 'bcrypt-ruby'
 
 ## I ADDED THESE BELOW
+gem 'thin'
+gem 'jquery-ui-rails'
 
 gem "protected_attributes"
-  gem "capybara-webkit"
 
 group :development, :test do
-  gem 'rspec-mocks'
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'shoulda-matchers'
   gem 'binding_of_caller'
   gem 'guard-rspec'
+  gem 'debugger'
+end
+
+group :test do
+  gem 'selenium-webdriver', require: false
+  gem 'poltergeist', require: false
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'rspec-mocks'
+  gem 'shoulda-matchers'
+
+
+  gem 'launchy'
 end
-  gem 'debugger'
 
 group :development do
   gem 'better_errors'
 end
 
-group :test do
-	gem 'launchy'
-
-end
-
 group :production do
   gem 'rails_12factor'  # heroku deployment needs this
-  gem 'thin'
   gem 'sprockets-rails' # automatically compile your assests for you don't have to.
 end
 
-gem 'jquery-ui-rails'

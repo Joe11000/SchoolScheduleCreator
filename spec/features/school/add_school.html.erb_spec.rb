@@ -11,7 +11,7 @@ describe "visitor creating school" do
  #    School.try(:last).try(:destroy)
 	# end
 
-  it "can see all contents to add new class" do
+  it "can see all contents to add new class", focus: true, js: true  do
     within "#new_school" do
       find_field("school_name").visible?
       find_field("school_password").visible?
@@ -20,6 +20,10 @@ describe "visitor creating school" do
       find_field("school_bio").visible?
 
       find_button("next").visible?
+      # page.driver.debug
+      # debugger
+      # debugger
+      # debugger
     end
   end
 

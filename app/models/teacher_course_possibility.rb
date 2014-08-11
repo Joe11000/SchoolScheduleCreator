@@ -5,6 +5,6 @@ class TeacherCoursePossibility < ActiveRecord::Base
   belongs_to :teacher, inverse_of: :teacher_course_possibilities
 
 
-  has_one :class_time, class_name: "Timespan",
+  has_one :course_time, class_name: "Timespan",
                        as: :timeable
 end

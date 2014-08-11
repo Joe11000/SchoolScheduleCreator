@@ -40,7 +40,8 @@ describe "welcome page" do
 
         click_button('login')
       end
-      current_path.should eq school_path(school)
+
+      expect(current_path).to eq school_path(school)
 
       school.try(:destroy)
     end

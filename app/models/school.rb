@@ -1,14 +1,14 @@
 class School < ActiveRecord::Base
-  attr_accessible :name, :bio, :location
+  attr_accessible :bio, :location, :name
 
-  validates :name,     presence: true, uniqueness: true
   validates :bio,      presence: true
   validates :location, presence: true, uniqueness: true
+  validates :name,     presence: true, uniqueness: true
   validates :password, presence: true
 
-  has_many :teachers
-  has_many :courses_pools, dependent: :destroy
-  has_many :rooms,         dependent: :destroy
+  has_many :teachers,         dependent: :destroy
+  has_many :courses_pools,    dependent: :destroy
+  has_many :rooms,            dependent: :destroy
 
   has_one  :time_open, class_name: "Timespan",
                        as: :timeable,
