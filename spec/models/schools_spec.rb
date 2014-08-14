@@ -2,15 +2,21 @@ require 'spec_helper'
 
 describe School do
 
-  context "factory" do
-    subject(:school){ FactoryGirl.create(:school) }
+  context "saveable" do
+    before(:all) do
+      @school = FactoryGirl.create(:school)
+    end
 
-    it "is valid" do
-      expect(school.valid?).to eq true
+    after(:all) do
+      @school.delete
+    end
+
+    it "is valid", smoke: true do
+      expect(@school.valid?).to eq true
     end
 
     it "is saveable to db", smoke: true do
-      expect(school.new_record?).to eq false
+      expect(@school.new_record?).to eq false
     end
   end
 
@@ -38,9 +44,9 @@ describe School do
   end
 
 
-  context "instance" do
+  context "factory" do
 
-    subject(:school) {FactoryGirl.create(:school)}
+    let!(:school) {FactoryGirl.build_stubbed(:school)}
 
     it "has correct name" do
       expect(school.name).to match(/^school\d*$/i)
@@ -48,10 +54,6 @@ describe School do
 
     it "has correct location" do
       expect(school.location).to match(/^\d*[.]\d*\s\d*[.]\d*$/)
-    end
-
-    it "has correct password" do
-      expect(school.authenticate('1234')).to be_a School
     end
 
     it "has correct bio" do
