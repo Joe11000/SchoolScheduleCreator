@@ -4,7 +4,7 @@ include Capybara::DSL
 
 describe "visitor creating school" do
 	before(:each) do
-    visit new_school_path
+    visit new_school
     # save_and_open_page
     within "#new_school" do
       fill_in "school_name",                  with: "School_#{School.count}"
@@ -18,14 +18,12 @@ describe "visitor creating school" do
 
     @current_school = School.last
 
-    visit edit_school_path(@current_school)
+    visit edit_school(@current_school)
 	end
 
 	after(:all) do
     @current_school.try(:destroy)
 	end
-
-
 
   it "can see all contents to add new course", js: true do
     find_field("school_name").visible?

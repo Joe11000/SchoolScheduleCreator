@@ -1,32 +1,33 @@
 require 'spec_helper'
 
 describe Room do
-  before(:all) do
-  	@teacher = FactoryGirl.create(:teacher, name: "TeachNAMEZZ")
-  	@course = FactoryGirl.create(:courses_pool)
 
-  	@course.teachers << @teacher
+  describe "model" do
+    it { should allow_mass_assignment_of(:capacity) }
+    it { should allow_mass_assignment_of(:number) }
 
-  	@teacher_course_possibility = @teacher.teacher_course_possibilities.first
-  	@school = FactoryGirl.create(:school, name: "Joez Schoolzz")
+    it { should belong_to(:school) }
+    it { should have_many(:teacher_course_possibilities) }
+    it { should have_many(:teachers).through(:teacher_course_possibilities) }
+    it { should have_many(:courses_pools).through(:teacher_course_possibilities) }
 
-  	@room.school = @school
-  	@room.teacher_course_possibilities << @teacher_course_possibility
+    it {should have_many(:time_requests).class_name('Timeable').dependent(:destroy) }
+    it {should have_many(:special_time_available).class_name('Timeable').dependent(:destroy) }
+    it {should have_many(:special_time_unavailable).class_name('Timeable').dependent(:destroy) }
+
+
   end
 
-  # after(:all) do
-  # 	@room.destroy
-  # 	@school.destroy
-  # 	@teacher.destroy
-  # 	@course.destroy
-  # end
+  describe "factory" do
+    before(:all) do
+      @room = FactoryGirl.build_stubbed(:room)
+    end
 
-  after(:all) do
-    @room.try(:destroy)
-    @school.try(:destroy)
-    @teacher.try(:destroy)
-    @course.try(:destroy)
+
+    it "should be valid", smoke: true do
+      expect(@room.valid?).to eq true
+    end
   end
 
-  # expect(FactoryGirl.create(:room)).to be_valid
+
 end

@@ -4,6 +4,7 @@ include Capybara::DSL
 
 describe "visitor creating school" do
 	before(:each) do
+    debugger
     visit new_school_path
 	end
 
