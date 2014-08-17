@@ -2,7 +2,7 @@ class CoursesPool < ActiveRecord::Base
 
   # layout: "new_courses_layout", only: [:new, :edit]
 
-  attr_accessible :course_number, :min_students_to_teach, :subject
+  attr_accessible :course_code, :min_students_to_teach, :subject
 
   belongs_to :school
 
@@ -14,5 +14,5 @@ class CoursesPool < ActiveRecord::Base
   validates  :min_students_to_teach, presence: true,
     	                               numericality: { integer_only: true,
                                                      greater_than: 0 }
-  validates  :course_number, presence: true, numericality: { integer_only: true,greater_than: 0 }
+  validates  :course_code, presence: true
 end

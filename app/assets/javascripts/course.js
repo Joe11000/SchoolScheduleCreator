@@ -39,18 +39,18 @@ $(function()
   function addCourseToList()
   {
     c_subject               = $('#subject')[0].value;
-    c_course_number         = $('#course_number')[0].value;
+    c_course_code         = $('#course_code')[0].value;
     c_min_students_to_teach = $('#min_students_to_teach')[0].value;
 
-    if(c_subject == "" || c_course_number == "" || c_min_students_to_teach == "")
+    if(c_subject == "" || c_course_code == "" || c_min_students_to_teach == "")
       return;
 
 
-    c_course_number = c_course_number.replace(/[, -]/g, "_");
+    c_course_code = c_course_code.replace(/[, -]/g, "_");
 
     string = "<tr class='course_row'>" +
                 "<td><input class='row_subject' type='text' value='" + c_subject + "'></td>" +
-                "<td><input class='row_course_number' type='text' value='" + c_course_number + "'></td>" +
+                "<td><input class='row_course_code' type='text' value='" + c_course_code + "'></td>" +
                 "<td><input class='row_min_students_to_teach' type='text' value='" + c_min_students_to_teach + "'></td>" +
                 "<td><img alt='delete_img' class='delete_img' height='50' width='50' src='/assets/delete.png' ></td>" +
              "</tr>"
@@ -72,7 +72,7 @@ $(function()
   function clearInput()
   {
      $('#subject')[0].value = "";
-     $('#course_number')[0].value = "";
+     $('#course_code')[0].value = "";
      $('#min_students_to_teach')[0].value = "";
   }
 
@@ -82,12 +82,12 @@ $(function()
 
  $(".course_row").each(function(index, element)  {
     row_subject = $(this).find('.row_subject')[0].value
-    row_course_number = $(this).find('.row_course_number')[0].value
+    row_course_code = $(this).find('.row_course_code')[0].value
     row_min_students_to_teach = $(this).find('.row_min_students_to_teach')[0].value
 
-    json['courses'][row_course_number] = {
+    json['courses'][row_course_code] = {
                                            subject: row_subject,
-                                           course_number: row_course_number,
+                                           course_code: row_course_code,
                                            min_students_to_teach: row_min_students_to_teach
                                          }
   });

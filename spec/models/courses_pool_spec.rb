@@ -16,7 +16,7 @@ describe CoursesPool do
     end
 
     it "has correct course number" do
-      expect(@courses_pool.course_number).to eq 101
+      expect(@courses_pool.course_code).to eq "MAT_101"
     end
 
     it "has correct min_students_to_teach" do
@@ -27,13 +27,13 @@ describe CoursesPool do
 
   describe "model" do
 
-    it { should allow_mass_assignment_of(:course_number)}
+    it { should allow_mass_assignment_of(:course_code)}
     it { should allow_mass_assignment_of(:min_students_to_teach) }
     it { should allow_mass_assignment_of(:subject) }
 
     it { should belong_to(:school)}
 
-    it { should validate_presence_of(:course_number) }
+    it { should validate_presence_of(:course_code) }
     it { should validate_presence_of(:min_students_to_teach) }
 
     it { should validate_numericality_of(:min_students_to_teach), greater_than: 0 }

@@ -2,7 +2,7 @@ FactoryGirl.define do
 
   factory :courses_pool, aliases: [:course] do
     subject                "english"
-    course_number         101
+    course_code         "MAT_101"
     min_students_to_teach  2
   end
 

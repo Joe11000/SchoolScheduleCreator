@@ -21,10 +21,10 @@ class CoursesController < ApplicationController
     #   end
     # end
 
-    params[:courses].values.each do |course| # make sure course_numbers are saved in the correct format
-      correct_format = course["course_number"].gsub(/[, ]/, "_")
-      if correct_format != course["course_number"]
-        course["course_number"] = correct_format
+    params[:courses].values.each do |course| # make sure course_codes are saved in the correct format
+      correct_format = course["course_code"].gsub(/[, ]/, "_")
+      if correct_format != course["course_code"]
+        course["course_code"] = correct_format
       end
     end
 
@@ -41,9 +41,9 @@ class CoursesController < ApplicationController
         current_school.deleteNoLongerNeededCourses(params[:courses])
 
         params[:courses].values.each do |course|
-          find_course = current_school.courses_pools.find_by_course_number(course[:course_number])
+          find_course = current_school.courses_pools.find_by_course_code(course[:course_code])
 
-          if find_course  # course_number
+          if find_course  # course_code
             find_course.update_attributes(course)
           else
             current_school.courses_pools.create(course)

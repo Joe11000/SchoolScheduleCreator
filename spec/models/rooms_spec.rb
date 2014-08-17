@@ -12,8 +12,8 @@ describe Room do
     it { should have_many(:courses_pools).through(:teacher_course_possibilities) }
 
     it {should have_many(:time_requests).class_name('Timeable').dependent(:destroy) }
-    it {should have_many(:special_time_available).class_name('Timeable').dependent(:destroy) }
-    it {should have_many(:special_time_unavailable).class_name('Timeable').dependent(:destroy) }
+    it {should have_many(:special_time_availibilities).class_name('Timeable').dependent(:destroy) }
+    it {should have_many(:special_time_unavailibilities).class_name('Timeable').dependent(:destroy) }
 
 
   end
