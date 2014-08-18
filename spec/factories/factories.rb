@@ -1,5 +1,7 @@
 FactoryGirl.define do
 
+# polymorphic factory girl associations help # https://gist.github.com/travisr/2830535
+
   factory :courses_pool, aliases: [:course] do
     subject             "english"
     course_code         "MAT_101"

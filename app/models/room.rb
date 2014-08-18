@@ -7,9 +7,9 @@ class Room < ActiveRecord::Base
   has_many :teachers, through: :tcr_possibilities
   has_many :courses_pools, through: :tcr_possibilities
 
-  has_many :time_requests, as: :timeable,  dependent: :destroy
-  has_many :special_time_availibilities, as: :timeable, dependent: :destroy
-  has_many :special_time_unavailibilities, as: :timeable, dependent: :destroy
+  has_many :time_requests,                 as: :timeable, class_name: 'Timespan', dependent: :destroy
+  has_many :special_time_availibilities,   as: :timeable, class_name: 'Timespan', dependent: :destroy
+  has_many :special_time_unavailibilities, as: :timeable, class_name: 'Timespan', dependent: :destroy
 
   validates :capacity, presence: true,
                        numericality: { integer_only: true,

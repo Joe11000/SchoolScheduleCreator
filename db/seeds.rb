@@ -27,6 +27,14 @@ cp2 = school.courses_pools.create(subject:    "math",
 teacher.courses_could_teach << [cp1, cp2]
 
 room = school.rooms.create(number: '1551', capacity: 30)
+room.time_requests.create(start_time: Time.new(2013,12,31,6,30),
+                          end_time: Time.new(2013,12,31,7,30))
+room.special_time_availibilities.create(start_time: Time.new(2013,12,31,6,30),
+                                        end_time: Time.new(2013,12,31,7,30))
+room.special_time_unavailibilities.create(start_time: Time.new(2013,12,31,6,30),
+                                          end_time: Time.new(2013,12,31,7,30))
+
+
 
 
 # Insert Teacher_Course_Room_Possibility
