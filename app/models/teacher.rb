@@ -19,6 +19,7 @@ class Teacher < ActiveRecord::Base
 
   has_many :courses_could_teach, through: :teacher_course_possibilities,
                                  source:  :courses_pool
+
   has_many :courses_teaching, -> { where('teacher_course_possibilities.scheduled_course = ? ', true) },
                                  through: :teacher_course_possibilities,
                                  source:  :courses_pool
