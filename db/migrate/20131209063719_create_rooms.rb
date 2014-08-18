@@ -5,7 +5,7 @@ class CreateRooms < ActiveRecord::Migration
       t.integer :number
       t.belongs_to :school
 
-      t.belongs_to :teacher_course_possibility
+      t.belongs_to :tcr_possibility
       t.timestamps
     end
   end

@@ -19,7 +19,7 @@ describe TeacherCoursePossibility do
 
 			@course.teachers << @teacher
 
-			@teacher_course_possibility = @teacher.teacher_course_possibilities.first
+			@teacher_course_possibility = @teacher.tcr_possibilities.first
 		end
 
 		# after(:all) do

@@ -3,9 +3,9 @@ class Room < ActiveRecord::Base
 
   belongs_to :school
 
-  has_many :teacher_course_possibilities
-  has_many :teachers, through: :teacher_course_possibilities
-  has_many :courses_pools, through: :teacher_course_possibilities
+  has_many :tcr_possibilities
+  has_many :teachers, through: :tcr_possibilities
+  has_many :courses_pools, through: :tcr_possibilities
 
   has_many :time_requests, as: :timeable,  dependent: :destroy
   has_many :special_time_availibilities, as: :timeable, dependent: :destroy

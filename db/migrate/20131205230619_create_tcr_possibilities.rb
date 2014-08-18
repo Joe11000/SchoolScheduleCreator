@@ -1,6 +1,6 @@
-class CreateTeacherCoursePossibilities < ActiveRecord::Migration
+class CreateTcrPossibilities < ActiveRecord::Migration
   def change
-    create_table :teacher_course_possibilities do |t|
+    create_table :tcr_possibilities do |t|
       t.belongs_to :courses_pool
       t.belongs_to :teacher
 

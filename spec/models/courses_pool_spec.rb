@@ -39,7 +39,7 @@ describe CoursesPool do
     it { should validate_numericality_of(:min_students_to_teach), greater_than: 0 }
     it { should validate_numericality_of(:min_students_to_teach), only_integer: true }
 
-    it { should have_many(:teacher_course_possibilities).dependent(:destroy) }
-    it { should have_many(:teachers).through(:teacher_course_possibilities) }
+    it { should have_many(:tcr_possibilities).dependent(:destroy) }
+    it { should have_many(:teachers).through(:tcr_possibilities) }
   end
 end

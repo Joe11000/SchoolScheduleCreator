@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20131210185242) do
     t.integer  "capacity"
     t.integer  "number"
     t.integer  "school_id"
-    t.integer  "teacher_course_possibility_id"
+    t.integer  "tcr_possibility_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20131210185242) do
     t.datetime "updated_at"
   end
 
-  create_table "teacher_course_possibilities", force: true do |t|
+  create_table "tcr_possibilities", force: true do |t|
     t.integer  "courses_pool_id"
     t.integer  "teacher_id"
     t.boolean  "scheduled_course", default: false

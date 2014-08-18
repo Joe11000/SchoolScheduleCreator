@@ -15,9 +15,9 @@ describe Teacher do
     it { should belong_to(:school) }
 
     it { should have_many(:break_times).dependent(:destroy) }
-    it { should have_many(:teacher_course_possibilities).dependent(:destroy)}
-    it { should have_many(:courses_could_teach).through(:teacher_course_possibilities).source(:courses_pool) }
-    it { should have_many(:courses_teaching).through(:teacher_course_possibilities).source(:courses_pool)}
+    it { should have_many(:tcr_possibilities).dependent(:destroy)}
+    it { should have_many(:courses_could_teach).through(:tcr_possibilities).source(:courses_pool) }
+    it { should have_many(:courses_teaching).through(:tcr_possibilities).source(:courses_pool)}
 
   end
 

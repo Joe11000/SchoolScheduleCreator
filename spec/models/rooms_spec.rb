@@ -7,9 +7,9 @@ describe Room do
     it { should allow_mass_assignment_of(:number) }
 
     it { should belong_to(:school) }
-    it { should have_many(:teacher_course_possibilities) }
-    it { should have_many(:teachers).through(:teacher_course_possibilities) }
-    it { should have_many(:courses_pools).through(:teacher_course_possibilities) }
+    it { should have_many(:tcr_possibilities) }
+    it { should have_many(:teachers).through(:tcr_possibilities) }
+    it { should have_many(:courses_pools).through(:tcr_possibilities) }
 
     it {should have_many(:time_requests).class_name('Timeable').dependent(:destroy) }
     it {should have_many(:special_time_availibilities).class_name('Timeable').dependent(:destroy) }

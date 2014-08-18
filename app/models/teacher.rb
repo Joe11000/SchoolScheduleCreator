@@ -10,18 +10,19 @@ class Teacher < ActiveRecord::Base
                          class_name: "Timespan",
                          dependent: :destroy
 
-  has_many :courses_pools, through: :teacher_course_possibilities
+  #  tcr = teacher_course_room
+  has_many :courses_pools, through: :tcr_possibilities
 
 
-  has_many :teacher_course_possibilities, inverse_of: :teacher,
+  has_many :tcr_possibilities, inverse_of: :teacher,
                                           dependent:  :destroy
 
 
-  has_many :courses_could_teach, through: :teacher_course_possibilities,
+  has_many :courses_could_teach, through: :tcr_possibilities,
                                  source:  :courses_pool
 
-  has_many :courses_teaching, -> { where('teacher_course_possibilities.scheduled_course = ? ', true) },
-                                 through: :teacher_course_possibilities,
+  has_many :courses_teaching, -> { where('tcr_possibilities.scheduled_course = ? ', true) },
+                                 through: :tcr_possibilities,
                                  source:  :courses_pool
 
 
@@ -56,9 +57,9 @@ end
 
   # has_many :published_posts, -> { where published: true }, class_name: 'Post'
 
-  # scope :courses_could_teach { Teacher.join(:teacher_course_possibilities: :course).where('teachers.id = self.id ') }
+  # scope :courses_could_teach { Teacher.join(:tcr_possibilities: :course).where('teachers.id = self.id ') }
 
-  # scope :courses_teaching, joins(:teacher_course_possibility).where("self.teacher_course_possibilities.scheduled_course = ?",true)
-  # scope :courses_teaching, joins("INNER JOIN teacher_course_possibilities
-  #                                 ON teacher_course_possibilities.teacher_id = teacher.id
+  # scope :courses_teaching, joins(:tcr_possibility).where("self.tcr_possibilities.scheduled_course = ?",true)
+  # scope :courses_teaching, joins("INNER JOIN tcr_possibilities
+  #                                 ON tcr_possibilities.teacher_id = teacher.id
   #                                 WHERE scheduled_course = true ")

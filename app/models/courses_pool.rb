@@ -6,9 +6,9 @@ class CoursesPool < ActiveRecord::Base
 
   belongs_to :school
 
-  has_many   :teacher_course_possibilities, dependent:  :destroy,
+  has_many   :tcr_possibilities, dependent:  :destroy,
                                             inverse_of: :courses_pool
-  has_many   :teachers, through: :teacher_course_possibilities #,  source:  :teacher
+  has_many   :teachers, through: :tcr_possibilities #,  source:  :teacher
 
 
   validates  :min_students_to_teach, presence: true,

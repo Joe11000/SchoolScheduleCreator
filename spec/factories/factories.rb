@@ -37,7 +37,7 @@ FactoryGirl.define do
   end
 #################################################################
 
-  factory :teacher_course_possibility do #, :class => 'TeacherCoursePossibilities' do
+  factory :tcr_possibility do #, :class => 'TeacherCoursePossibilities' do
     course
   	teacher
   	scheduled_course  false
