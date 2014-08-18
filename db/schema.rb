@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 20140818042731) do
   create_table "tcr_possibilities", force: true do |t|
     t.integer  "courses_pool_id"
     t.integer  "teacher_id"
+    t.integer  "room_id"
+    t.integer  "schedule_id"
     t.boolean  "scheduled_course", default: false
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,7 +1,7 @@
 class CreateSchedules < ActiveRecord::Migration
   def change
     create_table :schedules do |t|
-      t.references :school
+      t.belongs_to :school
       t.timestamps
     end
   end

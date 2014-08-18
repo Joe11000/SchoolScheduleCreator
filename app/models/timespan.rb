@@ -6,3 +6,5 @@ class Timespan < ActiveRecord::Base
   validates  :start_time, presence: true
   validates  :end_time,   presence: true
 end
+
+# THIS NEEDS TO EXTEND AN ACTIVERECORD::BASE CLASS THAT CONTAINS THE GENERIC TIME INFO. THIS CAN BUILD UPON THAT ONE. TIMESPAN(THE CHILD CLASS) MUST HAVE THE (BELONGS_TO: TIMABLE, POLYMORPHIC: TRUE)
