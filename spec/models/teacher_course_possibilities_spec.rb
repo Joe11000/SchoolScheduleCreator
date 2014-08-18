@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe TeacherCoursePossibility do
+describe TcrPossibility do
 
 	describe "factory" do
 		it "is valid" do
-			FactoryGirl.build(:courses_pool).should be_valid
+			expect(FactoryGirl.build_stubbed(:tcr_possibility)).to be_valid
 		end
 
 		after(:all) do
@@ -14,22 +14,22 @@ describe TeacherCoursePossibility do
 
 	describe "instances" do
 		before(:all) do
-			@teacher = FactoryGirl.create(:teacher)
-			@course = FactoryGirl.create(:courses_pool)
+			# @teacher = FactoryGirl.create(:teacher)
+			# @course = FactoryGirl.create(:courses_pool)
 
-			@course.teachers << @teacher
+			# @course.teachers << @teacher
 
-			@teacher_course_possibility = @teacher.tcr_possibilities.first
+			# @tcr_possibility = @teacher.tcr_possibilities.first
 		end
 
 		# after(:all) do
 		# 	@teacher.destroy
 		# 	@course.destroy
-		# end
-	after(:all) do
-    @teacher.try(:destroy)
-    @course.try(:destroy)
-  end
+	# 	# end
+	# after(:all) do
+ #    @teacher.try(:destroy)
+ #    @course.try(:destroy)
+ #  end
 
 		it {}
   it { should belong_to(:teacher) }

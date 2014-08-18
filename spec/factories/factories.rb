@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :courses_pool, aliases: [:course] do
-    subject                "english"
+    subject             "english"
     course_code         "MAT_101"
     min_students_to_teach  2
   end
@@ -22,16 +22,20 @@ FactoryGirl.define do
        "#{n}.12345 #{n}.4366743256"
     end
 
+
   factory :school do
     name
     location
     bio       "Opened Last Thursday."
-    time_open
+    # open_time
     # room
 
     after(:build) do |school|
       school.password              = "1234"
       school.password_confirmation = "1234"
+
+      # school.open_times.create(start_time: Time.new(2013,12,31,6,30),
+      #                          end_time: Time.new(2013,12,31,7,30))
     end
   	# association :timeable, factory: :timespan
   end
@@ -49,7 +53,7 @@ FactoryGirl.define do
   	# association :timeable, factory: :timespan
   end
 
-  factory :timespan, aliases: [:break_time, :time_open, :occupied_time], class: "Timespan" do
+  factory :timespan, aliases: [:break_time, :open_time, :occupied_time], class: "Timespan" do
   	start_time  Time.new(2013,12,31,6,30)
   	end_time    Time.new(2013,12,31,7,30)
   end

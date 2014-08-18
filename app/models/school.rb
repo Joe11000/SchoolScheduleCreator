@@ -9,12 +9,13 @@ class School < ActiveRecord::Base
   has_many :teachers,         dependent: :destroy
   has_many :courses_pools,    dependent: :destroy
   has_many :rooms,            dependent: :destroy
+  has_many :schedules,        dependent: :destroy
 
   has_many :tcr_possibilities, through: :schedules
 
-  has_one  :time_open, class_name: "Timespan",
-                       as: :timeable,
-                       dependent: :destroy
+  has_many  :open_times, class_name: "Timespan",
+                         as: :timeable,
+                         dependent: :destroy
 
   has_secure_password
 

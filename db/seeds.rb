@@ -5,6 +5,9 @@ school.password = "1234";
 school.password_confirmation = "1234"
 school.save
 
+school.open_times.create(start_time: Time.new(2013,12,15,6,30),
+                           end_time: Time.new(2013,12,15,7,30))
+
 teacher = school.teachers.create(name: "Teacher_A",
 	                               bio: "Seeds...I do teacherly things")
 

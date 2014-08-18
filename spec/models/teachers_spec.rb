@@ -21,28 +21,30 @@ describe Teacher do
 
   end
 
-
   describe "factory" do
+    context "is valid if" do
+      let(:teacher){ FactoryGirl.build(:teacher) }
 
-    before(:all) do
-      @teacher = FactoryGirl.create(:teacher)
+      it "is valid", smoke: true do
+        expect(teacher).to be_valid
+      end
+
+      it "has a name" do
+        expect(teacher.name).to eq "Jill Teacher"
+      end
+
+      it "has a bio" do
+        expect(teacher.bio).to eq "Does the teaching thing"
+      end
     end
 
-    after(:all) do
-      @teacher.try(:destroy)
+    context "is invalid if" do
+      it "missing any single element", smoke: true do
+        [:name, :bio].each do |element|
+          expect(FactoryGirl.build(:teacher, element => nil )).not_to be_valid
+        end
+      end
     end
-
-    it "is valid", smoke: true do
-      expect(@teacher.new_record?).to eq false
-    end
-
-    it "has a name" do
-      expect(@teacher.name).to eq "Jill Teacher"
-    end
-
-    it "has a bio" do
-      expect(@teacher.bio).to eq "Does the teaching thing"
-    end
-
   end
+
 end

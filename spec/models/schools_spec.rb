@@ -1,26 +1,13 @@
 require 'spec_helper'
 
+# test the model methods
+
+
+
 describe School do
 
-  context "saveable" do
-    before(:all) do
-      @school = FactoryGirl.create(:school)
-    end
-
-    after(:all) do
-      @school.delete
-    end
-
-    it "is valid", smoke: true do
-      expect(@school.valid?).to eq true
-    end
-
-    it "is saveable to db", smoke: true do
-      expect(@school.new_record?).to eq false
-    end
-  end
-
   context "model" do
+
     it { should have_secure_password }
 
     it { should allow_mass_assignment_of(:bio) }
@@ -40,72 +27,46 @@ describe School do
     it { should have_many(:teachers).dependent(:destroy) }
     it { should have_many(:courses_pools).dependent(:destroy) }
     it { should have_many(:rooms).dependent(:destroy) }
-    it { should have_one(:time_open).class_name("Timespan").dependent(:destroy) }
-  end
+    it { should have_many(:schedules).dependent(:destroy) }
+    it { should have_many(:open_times).class_name('Timespan').dependent(:destroy) }
 
+  end
 
   context "factory" do
-
-    let!(:school) {FactoryGirl.build_stubbed(:school)}
-
-    it "has correct name" do
-      expect(school.name).to match(/^school\d*$/i)
+    context "invalid if" do
+      it "missing any single element", smoke: true do
+        [:name, :location, :bio].each do |element|
+          expect(FactoryGirl.build(:school, element => nil )).not_to be_valid
+        end
+      end
     end
 
-    it "has correct location" do
-      expect(school.location).to match(/^\d*[.]\d*\s\d*[.]\d*$/)
-    end
+    context "valid if" do
+      it "created by default", smoke: true do
+        # debugger
+        expect(FactoryGirl.build(:school)).to be_valid
+      end
 
-    it "has correct bio" do
-      expect(school.bio).to eq "Opened Last Thursday."
-    end
+      context "instance" do
+        let(:school) {FactoryGirl.build_stubbed(:school)}
 
-    it "has correct days open" do
-      expect(school.time_open.start_time).to be_an_instance_of(ActiveSupport::TimeWithZone)
-      expect(school.time_open.end_time).to be_an_instance_of(ActiveSupport::TimeWithZone)
-    end
+        it "has correct name" do
+          expect(school.name).to match(/^school\d*$/i)
+        end
 
+        it "has correct location" do
+          expect(school.location).to match(/^\d*[.]\d*\s\d*[.]\d*$/)
+        end
+
+        it "has correct bio" do
+          expect(school.bio).to eq "Opened Last Thursday."
+        end
+
+        # it "has correct days open" do
+        #   expect(school.open_times.start_time).to be_an_instance_of(ActiveSupport::TimeWithZone)
+        #   expect(school.open_times.end_time).to be_an_instance_of(ActiveSupport::TimeWithZone)
+        # end
+      end
+    end
   end
-
-
-
-
-
-  # context "instance" do
-
-  #   before(:all) do
-  #     @school = FactoryGirl.create(:school)
-
-  #     @teacher = FactoryGirl.create(:teacher)
-  #     @school.teachers << @teacher
-  #     @school.time_open = FactoryGirl.create(:time_open)
-  #   end
-
-  #   # after(:all) do
-  #   #   @school.try(:destroy)
-  #   #   @teacher.try(:destroy)
-  #   # end
-
-  #   it "has correct name" do
-  #     expect(@school.name).to match(/^school\d*$/i)
-  #   end
-
-  #   it "has correct location" do
-  #     expect(@school.location).to match(/^\d*[.]\d*\s\d*[.]\d*$/)
-  #   end
-
-  #   it "has correct password" do
-  #     expect(@school.authenticate('1234')).to be_a School
-  #   end
-
-  #   it "has correct bio" do
-  #     expect(@school.bio).to eq "Opened Last Thursday."
-  #   end
-
-  #   it "has correct days open" do
-  #     expect(@school.time_open.start_time).to be_an_instance_of(ActiveSupport::TimeWithZone)
-  #     expect(@school.time_open.end_time).to be_an_instance_of(ActiveSupport::TimeWithZone)
-  #   end
-
-  # end
 end
