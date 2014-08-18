@@ -10,7 +10,7 @@ class School < ActiveRecord::Base
   has_many :courses_pools,    dependent: :destroy
   has_many :rooms,            dependent: :destroy
 
-  has_many :tcr_possibilities, through: :courses_pools
+  has_many :tcr_possibilities, through: :schedules
 
   has_one  :time_open, class_name: "Timespan",
                        as: :timeable,
