@@ -28,7 +28,8 @@ FactoryGirl.define do
   factory :school do
     name
     location
-    bio       "Opened Last Thursday."
+    bio                   "Opened Last Thursday."
+    passing_period_length 4
     # open_time
     # room
 

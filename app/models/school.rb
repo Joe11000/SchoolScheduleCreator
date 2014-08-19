@@ -1,10 +1,15 @@
 class School < ActiveRecord::Base
-  attr_accessible :bio, :location, :name
+  attr_accessible :bio, :location, :name, :passing_period_length
 
   validates :bio,      presence: true
   validates :location, presence: true, uniqueness: true
   validates :name,     presence: true, uniqueness: true
   validates :password, presence: true
+  validates :passing_period_length, numericality: {
+                                                    integer_only: true,
+                                                    greater_than_or_equal_to: 0
+                                                  }
+
 
   has_many :teachers,         dependent: :destroy
   has_many :courses_pools,    dependent: :destroy

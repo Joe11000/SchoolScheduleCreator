@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20140818042731) do
     t.string   "location"
     t.text     "bio"
     t.string   "password_digest"
+    t.integer  "passing_period_length", default: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -24,6 +24,10 @@ describe School do
     it { should_not allow_mass_assignment_of(:password) }
     it { should validate_presence_of(:password) }
 
+    it { should validate_numericality_of(:passing_period_length), only_integer: true }
+    it { should validate_numericality_of(:passing_period_length), greater_than_or_equal_to: 0 }
+
+
     it { should have_many(:teachers).dependent(:destroy) }
     it { should have_many(:courses_pools).dependent(:destroy) }
     it { should have_many(:rooms).dependent(:destroy) }

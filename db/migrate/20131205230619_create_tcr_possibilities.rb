@@ -5,7 +5,7 @@ class CreateTcrPossibilities < ActiveRecord::Migration
       t.belongs_to :teacher
       t.belongs_to :room
       t.belongs_to :schedule
-      t.boolean    :scheduled_course, default: false
+      t.boolean    :scheduled_course,      default: false
 
       t.timestamps
     end
