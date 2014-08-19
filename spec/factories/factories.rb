@@ -43,10 +43,15 @@ FactoryGirl.define do
   end
 #################################################################
 
-  factory :tcr_possibility do #, :class => 'TeacherCoursePossibilities' do
-    course
-  	teacher
+  factory :tcr_possibility do #, :class => 'TcrPossibility' do
+    association :room, factory: :room, strategy: :build
+    association :courses_pool, factory: :courses_pool, strategy: :build
+    association :teacher, factory: :teacher, strategy: :build
   	scheduled_course  false
+
+    # factory :tcr_possibility_scheduled do
+    #   scheduled_course  true
+    # end
   end
 
   factory :teacher do

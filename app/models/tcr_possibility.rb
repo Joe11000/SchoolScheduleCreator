@@ -7,5 +7,6 @@ class TcrPossibility < ActiveRecord::Base
 
 
   has_one :course_time, class_name: "Timespan",
-                       as: :timeable
+                        as: :timeable,
+                        dependent: :destroy
 end

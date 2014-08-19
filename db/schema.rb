@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20140818042731) do
     t.datetime "end_time"
     t.integer  "timeable_id"
     t.string   "timeable_type"
+    t.string   "special_availablilityy", default: "none"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

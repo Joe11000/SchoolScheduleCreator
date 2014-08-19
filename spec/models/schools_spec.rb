@@ -69,4 +69,6 @@ describe School do
       end
     end
   end
+
+  it "test instance methods"
 end

@@ -32,15 +32,13 @@ describe Room do
 
   describe "factory" do
     context "is valid if" do
-
       it "created by default", smoke: true do
-        expect(FactoryGirl.build_stubbed(:room)).to be_valid
+        expect(FactoryGirl.build(:room)).to be_valid
       end
     end
   end
 
     context "is invalid if" do
-
       it "missing a any field" do
         [:capacity, :number].each do |element|
           expect(FactoryGirl.build(:room, element => nil), ).not_to be_valid
@@ -48,5 +46,5 @@ describe Room do
     end
   end
 
-
+  it "test instance methods"
 end

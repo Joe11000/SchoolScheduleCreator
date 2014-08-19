@@ -47,4 +47,6 @@ describe Teacher do
     end
   end
 
+  it "test instance methods"
+
 end

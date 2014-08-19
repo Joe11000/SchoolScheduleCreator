@@ -3,41 +3,37 @@ require 'spec_helper'
 describe TcrPossibility do
 
 	describe "factory" do
-		it "is valid" do
-			expect(FactoryGirl.build(:tcr_possibility)).to be_valid
-		end
+    context "is valid if" do
+      it "created by default", smoke: true do
+			  expect(FactoryGirl.build(:tcr_possibility)).to be_valid
+      end
 
-		# after(:all) do
+      context "has correct attributes" do
+      	let(:tcr_possibility){ FactoryGirl.build(:tcr_possibility) }
+	      it "has scheduled_course" do
+				  expect(tcr_possibility.scheduled_course).to eq false
+	      end
+	    end
+    end
 
-  #   end
-	end
+	  context "is invalid if" do
+	    xit "missing a any field" do
+	      [:scheduled_course].each do |element|
+	        expect(FactoryGirl.build(:tcr_possibility, element => nil)).not_to be_valid
+        end
+	    end
+	  end
+  end
 
 	describe "model" do
 		it { should allow_mass_assignment_of(:scheduled_course) }
 
 	  it { should belong_to(:teacher) }
 	  it { should belong_to(:courses_pool) }
+	  it { should belong_to(:room) }
+	  it { should have_one(:course_time).dependent(:destroy) }
 	end
 
-	describe "instances" do
-		# before(:all) do
-		# 	# @teacher = FactoryGirl.create(:teacher)
-		# 	# @course = FactoryGirl.create(:courses_pool)
 
-		# 	# @course.teachers << @teacher
-
-		# 	# @tcr_possibility = @teacher.tcr_possibilities.first
-		# end
-
-		# after(:all) do
-		# 	@teacher.destroy
-		# 	@course.destroy
-	# 	# end
-	# after(:all) do
- #    @teacher.try(:destroy)
- #    @course.try(:destroy)
- #  end
-
-		# it {}
-	end
+  it "test instance methods"
 end

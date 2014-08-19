@@ -42,4 +42,7 @@ describe CoursesPool do
     it { should have_many(:tcr_possibilities).dependent(:destroy) }
     it { should have_many(:teachers).through(:tcr_possibilities) }
   end
+
+  it "test instance methods"
+
 end

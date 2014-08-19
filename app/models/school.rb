@@ -19,12 +19,18 @@ class School < ActiveRecord::Base
 
   has_secure_password
 
-  def deleteNoLongerNeededCourses(courses)
-    course_codes_arr = []
-    courses.values.each do |course|
-      course_codes_arr << course['course_code']
-    end
+  def self.create_all_possible_schedules
 
-    self.courses_pools.where("courses_pools.course_code NOT IN (?)", course_codes_arr).destroy_all
   end
+
+
+
+  # def deleteNoLongerNeededCourses(courses)
+  #   course_codes_arr = []
+  #   courses.values.each do |course|
+  #     course_codes_arr << course['course_code']
+  #   end
+
+  #   self.courses_pools.where("courses_pools.course_code NOT IN (?)", course_codes_arr).destroy_all
+  # end
 end
